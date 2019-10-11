@@ -1,0 +1,20 @@
+---
+title: "R Markdown para Comunicação Estatística"
+author: "Markus Stein"
+institute: "IME-UFRGS"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    css: [duke-blue]
+---
+
+# Coming soon...
+
+---
+
+# Thanks!
