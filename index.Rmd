@@ -14,6 +14,37 @@ output:
 ---
 
 # Coming soon...
+<!-- https://github.com/rstudio-education/communicate-rmd-workshop -->
+<!-- https://github.com/dtkaplan/shinymark/blob/master/00-welcome/00-welcome.pdf -->
+<!-- https://bookdown.org/yihui/rmarkdown/css-and-themes.html -->
+<!-- https://r4ds.had.co.nz/r-markdown.html -->
+<!-- curso-R -->
+<!-- https://gitlab.procc.fiocruz.br/oswaldo/DS_2017/blob/153495ccebb0b66766b79c695bd01a38ae0dda47/markdown/markdown.md -->
+
+
+teoria + tabelas = metodologia
+fisher + milionaria = "statistical methods researcher workers"
+
+ <!-- https://www.pinterest.com/amstatnews/statistics-history/ -->
+
+
+<!-- install.packages(c("")) -->
+
+
+
+# Curriculum - pacote vitae
+
+# Slides - pacote  xaringham
+
+# poster??? - pacote pagedown
+
+# Artigos - pacote rticles
+
+# Livros - pacote boookdown
+
+# Websites - pacote blogdown
+
+# Provas - rexams
 
 ---
 
