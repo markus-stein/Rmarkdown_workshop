@@ -10,7 +10,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-    css: [duke-blue]
+    css: [flatly]
 ---
 
 # Comunicação Estatística
@@ -20,7 +20,7 @@ output:
 <!-- https://r4ds.had.co.nz/r-markdown.html -->
 <!-- curso-R -->
 <!-- https://gitlab.procc.fiocruz.br/oswaldo/DS_2017/blob/153495ccebb0b66766b79c695bd01a38ae0dda47/markdown/markdown.md -->
-
+<!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
 
 teoria + tabelas = metodologia  
 fisher + milionaria = "statistical methods researcher workers"
