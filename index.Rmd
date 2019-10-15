@@ -13,7 +13,7 @@ output:
     css: [duke-blue]
 ---
 
-# Coming soon...
+# Comunicação Estatística
 <!-- https://github.com/rstudio-education/communicate-rmd-workshop -->
 <!-- https://github.com/dtkaplan/shinymark/blob/master/00-welcome/00-welcome.pdf -->
 <!-- https://bookdown.org/yihui/rmarkdown/css-and-themes.html -->
@@ -22,8 +22,21 @@ output:
 <!-- https://gitlab.procc.fiocruz.br/oswaldo/DS_2017/blob/153495ccebb0b66766b79c695bd01a38ae0dda47/markdown/markdown.md -->
 
 
-teoria + tabelas = metodologia
+teoria + tabelas = metodologia  
 fisher + milionaria = "statistical methods researcher workers"
+
+
+![](https://www.nature.com/news/polopoly_fs/7.33601.1454417604!/image/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg_gen/derivatives/landscape_300/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg)
+
+---
+![](http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg)
+
+---
+![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-31.gif)
+
+---
+![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-32.gif)
+<!-- ![](https://static01.nyt.com/images/2019/02/17/magazine/17mag-coders-pics-slide-QBW6/17mag-coders-pics-slide-QBW6-superJumbo.png?quality=90&auto=webp) -->
 
  <!-- https://www.pinterest.com/amstatnews/statistics-history/ -->
 
@@ -31,21 +44,26 @@ fisher + milionaria = "statistical methods researcher workers"
 <!-- install.packages(c("")) -->
 
 
-
-# Curriculum - pacote vitae
-
-# Slides - pacote  xaringham
-
-# poster??? - pacote pagedown
-
-# Artigos - pacote rticles
-
-# Livros - pacote boookdown
-
-# Websites - pacote blogdown
-
-# Provas - rexams
+---
+## Curriculum - pacote vitae
 
 ---
+## Slides - pacote  xaringam
 
-# Thanks!
+---
+## Pôster - pacote pagedown
+
+---
+## Artigos - pacote rticles
+
+---
+## Livros - pacote bookdown
+
+---
+## Websites - pacote blogdown
+
+---
+## Provas - rexams
+
+---
+## Thanks!
