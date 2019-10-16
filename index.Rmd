@@ -10,9 +10,38 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-    css: [flatly]
+    # css: [flatly]
 ---
 
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+<!-- logos jornada datathon semanistica ... no background:-->
+<!-- --- -->
+# O que você vai precisar
+
+https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1
+
+pacotes rmarkdown e knitr, e pacotes auxiliares diplyr, tidyr, (ggplot2)
+
+
+---
+# O que é R?
+### E porque R(???)
+
+<!-- # ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='45%', paged.print=FALSE} -->
+<!-- # knitr::include_graphics('images/tobeornottobe1.jpg') -->
+<!-- # ``` -->
+
+![](https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg)
+
+---
+# O que é Markdown?
+<!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
+Exemplo
+
+---
 # Comunicação Estatística
 <!-- https://github.com/rstudio-education/communicate-rmd-workshop -->
 <!-- https://github.com/dtkaplan/shinymark/blob/master/00-welcome/00-welcome.pdf -->
@@ -20,16 +49,18 @@ output:
 <!-- https://r4ds.had.co.nz/r-markdown.html -->
 <!-- curso-R -->
 <!-- https://gitlab.procc.fiocruz.br/oswaldo/DS_2017/blob/153495ccebb0b66766b79c695bd01a38ae0dda47/markdown/markdown.md -->
-<!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
+### Teoria e Prática
+Exemplo:
 
-teoria + tabelas = metodologia  
-fisher + milionaria = "statistical methods researcher workers"
+Teoria de prob. + tabelas de dists. = metodologia  
+
+---
+# Comunicação Estatística
+
+Fisher + milionaria = "statistical methods researcher workers"
 
 
 ![](https://www.nature.com/news/polopoly_fs/7.33601.1454417604!/image/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg_gen/derivatives/landscape_300/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg)
-
----
-![](http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg)
 
 ---
 ![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-31.gif)
@@ -43,18 +74,45 @@ fisher + milionaria = "statistical methods researcher workers"
 
 <!-- install.packages(c("")) -->
 
+---
+![](http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg)
+computadores vem depois... mas analises ainda sao complicadas... 
+
+
+--- 
+# R e Markdown
+funcao render
+<!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
+
+---
+# Comunicação Estatística
+exercicio... tente diferentes saidas 
+http://cursos.leg.ufpr.br/prr/capDocDin.html
+
 
 ---
 ## Curriculum - pacote vitae
+Instalar no R o pacote
+
+https://docs.ropensci.org/vitae/
+https://github.com/mitchelloharawild/vitae
+
+
+
 
 ---
 ## Slides - pacote  xaringam
+de novo autor yiuhi
+
 
 ---
 ## Pôster - pacote pagedown
 
+
 ---
 ## Artigos - pacote rticles
+de novo autor yiuhi
+https://github.com/rstudio/rticles
 
 ---
 ## Livros - pacote bookdown
@@ -67,3 +125,5 @@ fisher + milionaria = "statistical methods researcher workers"
 
 ---
 ## Thanks!
+
+<!-- ![](https://miro.medium.com/max/875/1*x7P7gqjo8k2_bj2rTQWAfg.jpeg) -->
