@@ -1,6 +1,6 @@
 ---
 title: "R Markdown para Comunicação Estatística"
-author: "Markus Stein"
+author: "Markus Stein <br /> <small>com cópia de Rodrigo dos Reis<br /> e em colaboração com Márcia Barbian e Silvana Schneider</small> <br /> <br /> Departmento de Estatística"
 institute: "IME-UFRGS"
 date: "`r Sys.Date()`"
 output:
@@ -25,7 +25,9 @@ https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1
 
 pacotes rmarkdown e knitr, e pacotes auxiliares diplyr, tidyr, (ggplot2)
 
-
+<!-- No Rstudio Cloud -->
+<!-- git clone https://github.com/markus-stein/Rmarkdown_workshop -->
+rmarkdown::render('arquivo.Rmd', 'xaringan::moonreader')
 ---
 # O que é R?
 ### E porque R(???)
@@ -81,13 +83,16 @@ computadores vem depois... mas analises ainda sao complicadas...
 
 --- 
 # R e Markdown
+
 funcao render
 <!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
 
+### Slides Prof Rodrigo dos Reis
+
 ---
 # Comunicação Estatística
-exercicio... tente diferentes saidas 
-http://cursos.leg.ufpr.br/prr/capDocDin.html
+exercicio... tente diferentes saidas arquivos e slides
+<!-- http://cursos.leg.ufpr.br/prr/capDocDin.html -->
 
 
 ---
