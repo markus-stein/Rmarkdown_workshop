@@ -256,11 +256,6 @@ https://docs.ropensci.org/vitae/
 https://github.com/mitchelloharawild/vitae
 
 
-
----
-## Pôster - pacote `pagedown`
-
-
 ---
 ## Artigos - pacote `rticles`
 De novo autor Yiuhi  
@@ -284,18 +279,23 @@ Github repositories:
 * https://github.com/apreshill/blogdown-workshop
 
 
+
 ---
-## Provas - rexams e learnr
+## Pôster - pacote `pagedown`
+
+
+---
+## Provas - pacotes `rexams` e `learnr`
 
 
 ---
 Referências (e eventos)
 
-* Workshop UseR!2019 - "" -    
+* Workshop UseR!2019 - https://github.com/rstudio-education/communicate-rmd-workshop    
   + Datathon (Rmarkdown + Shiny): https://user2019.r-project.org/datathon/
   + Winner's work: https://user2019.r-project.org/static/uploads/winner_datathon2019.html
 
-* Rstudio Conf 2019 - "" - https://github.com/dtkaplan/shinymark
+* Rstudio Conf 2019 - https://github.com/dtkaplan/shinymark
 
 * https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1
 
