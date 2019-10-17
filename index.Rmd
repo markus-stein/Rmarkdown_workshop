@@ -122,7 +122,7 @@ pandoc -f markdown -t html exemplo-rmarkdown-0.md -o exemplo-rmarkdown-0.html
 O pacote `knitr` possui a função `pandoc()` que é um *wrapper* para
 executar o programa `pandoc` no sistema.
 
-```{r, message=FALSE,warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(knitr)
 pandoc(input = "examples/exemplo-rmarkdown-0.md", format = "html")
 ```
@@ -215,8 +215,9 @@ Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/
   + então converte o documento para `.html` usando o Pandoc.  
 
 
-### Conceitos básicos: slides da apresentação https://github.com/datathon-ufrgs/website
-* Prof. Rodrigo dos Reis
+### Conceitos básicos
+* Slides da apresentação https://github.com/datathon-ufrgs/website
+  + Prof. Rodrigo dos Reis
 
 
 
@@ -547,7 +548,7 @@ kable(summary(mod1)$coef, format = "html")
 
 ---
 
-background-image:  url("images/totoro_jumpingjack.gif")
+background-image:  url("images/rodrigo/totoro_jumpingjack.gif")
 background-size: cover
 class: center, inverse
 
@@ -560,13 +561,13 @@ class: center, inverse
 3. Clique em `knit` para gerar o arquivo de saída.
 
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
-knitr::include_graphics('images/rmd_print_4.png')
+knitr::include_graphics('images/rodrigo/rmd_print_4.png')
 ```
 
 - Experimente gerar diferentes formatos de saída.
 
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
-knitr::include_graphics('images/rmd_print_5.png')
+knitr::include_graphics('images/rodrigo/rmd_print_5.png')
 ```
 
 ---
@@ -574,7 +575,7 @@ knitr::include_graphics('images/rmd_print_5.png')
 # Por que rmarkdown?
 
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
-knitr::include_graphics('images/r_comunica.png')
+knitr::include_graphics('images/rodrigo/r_comunica.png')
 ```
 
 - Reprodutibilidade
@@ -584,7 +585,7 @@ knitr::include_graphics('images/r_comunica.png')
 
 ---
 
-background-image:  url("images/totoro_bola.gif")
+background-image:  url("images/rodrigo/totoro_bola.gif")
 background-size: cover
 class: center, inverse
 
@@ -592,19 +593,11 @@ class: center, inverse
 
 ---
 
-background-image:  url("images/porquecomprar-v2.gif")
+background-image:  url("images/rodrigo/porquecomprar-v2.gif")
 background-size: cover
 class: center, middle, inverse
 
 # Perguntas!?!
-
----
-
-background-image:  url("images/stat_caco.gif")
-background-size: cover
-class: middle, center, inverse
-
-
 
 ---
 # Meus exemplos de R Markdown
