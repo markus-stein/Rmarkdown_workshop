@@ -127,8 +127,7 @@ library(knitr)
 pandoc(input = "examples/exemplo-rmarkdown-0.md", format = "html")
 ```
 
-Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
-[exemplo-rmarkdown-0.html](examples/exemplo-rmarkdown-0.html) no navegador.
+Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/exemplo-rmarkdown-0.html) no navegador.
 
 
 ---
