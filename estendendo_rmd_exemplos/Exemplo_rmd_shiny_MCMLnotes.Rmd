@@ -1,0 +1,508 @@
+---
+title: "Monte Carlo likelihood approach for finite population theory"
+author: "Markus Stein"
+date: "11 de outubro de 2018"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The basic principle in statistical inference is to learn about the probability 
+distribution of a random variable from observing a random sample from it, and 
+possibly also incomplete populational data. Traditional methods like 
+maximum likelihood methods can show a bad performance even for simple problems. 
+For example, to estimate the probability of success from a sample of binary 
+variables when it is assumed to be close to zero in the population, we might 
+expect to end up with a monotone (flat) likelihood... Only for this basic 
+problem several adjustments/approximations of the likelihood function were suggested 
+in the literature. Our aim is to discuss the likelihood construction for a sample of 
+binary variables when the population total is known, and in particular to show how 
+we can approximate the true likelihood via Monte Carlo simulations (reference MClikelihood)... 
+We are motivated to allow for any complex sampling scheme... this problem is originally ... we also discuss survey-based approaches, simplest case of random 
+variables, when it assume a Bernoulli
+
+## Finite population sampling example
+
+Let $Y$ be a binary (usually response) variable and denote $\pi = P(Y=1)$ the 
+probability of $y$ being a success. Also assume that a finite population (or cohort) 
+$\mathcal{U}=\left\{ 1, \ldots, N\right\}$ is sampled from a hypothetical 
+superpoluation. Let $y_u$ be the value of variable $Y$ for the $u$th population 
+unit. Very often a inference target in design-based approach is a population 
+(non-random) total or a mean, $\bar{Y} = N^{-1} \sum_{u \: \in \: \mathcal{U}} y_u$.
+
+In practice we do not observe all units in the complete finite population, 
+instead we only observe a sample $\mathcal{S}$ of size $n$ from that. Assume 
+$\mathcal{S} \subseteq \mathcal{U}$ is drawn with a given sampling design, and 
+the inclusion probabilities are given by $\pi_u = P(u \in \mathcal{S})$ and 
+assumed to be strictly positive. To guarantee a designed-unbiased estimator, 
+denote $w_u = \pi_u^{-1}$ the design weight associated to unit $u$, such that 
+$\pi_u > 0$ for all $u \in \mathcal{U}$. Terms $w_u$ are usually interpreted 
+as the number of population units represented by the $u$th sample unit. For a 
+known $N$, the weighted estimator, or Horvitz-Thompson (HT) estimator 
+$$\bar{y}_{w} = \frac{1}{N} \sum_{u \: \in \: \mathcal{S}} w_u \: y_u.$$
+
+Properties of the HT estimator follow from randomisation theory. The inverse 
+probability weighting (IPW) is a very commom technique in design-based 
+estimation methods, and also popular in missing data problems. For a further 
+discussion about weighted estimators see \cite{Thompson1997} and \cite{Lohr2010}.
+
+## Probability of success
+
+To compare randomisation approaches with model-based methods consider the same 
+problem of estimating a mean, but now our goal is to estimate the complete-data 
+likelihood function, which is the product of the joint probability distribution 
+for each unit $u$. Let us denote the probability distribution of variable $Y$ as 
+$$ f\left( y \right) = P\left(Y=y\right) = (1-\pi)^{(1-y)} \pi^y,$$
+where $y \in \{0,1\}$. The logarithm of the distribution $f$ is $\log f(y) = y \log \pi + (1-y) \log (1-\pi)$, and the derivative of function $f$ with respect to $\boldsymbol{\pi}$ is $\frac{\partial}{\partial \boldsymbol{\pi}} f(y) = f(y) \times \frac{\partial}{\partial \boldsymbol{\pi}} \log f(y)$, hence the derivative of the logarithm is $\frac{\partial}{\partial \boldsymbol{\pi}} \log f(y) = \frac{y}{\pi} - \frac{(1-y)}{1-\pi}$.
+
+```{r}
+N <- 15000          # population size
+n <- 50             # sample size
+p <- 0.05           # probability of being a case
+y <- rbinom(N,1,p)  # finite pop. sampled sample from Y ~ Bernoulli(p)
+U <- 1:N            # set of indexes for population
+S <- sample(U, n)   # sample of size n from U
+table(y[S])/n
+```
+
+## Individual-level likelihood function (complete unobserved data)
+
+The complete-data likelihood assumes $Y$ observed for all units in 
+$\mathcal{U}$ then the joint distribution for all observations is given by 
+$$f\left(\boldsymbol{y} \right) \: = \: \prod_{u \in \mathcal{U}} 
+    f\left(y_u \right) \: = \: \prod_{u \in \mathcal{U}} \pi^{y_u} 
+    \: = \: \pi^{\sum_{u \in \mathcal{U}} y_u} (1-\pi)^{\sum_{u \in 
+    \mathcal{U}} (1-y_u)} \: = \: \pi^{N_1} (1-\pi)^{N-N_1},$$
+with $y_u$ being the indicator $Y$ for the $u$th unit. Note that the 
+population number of cases $(Y=1)$ can be written as $N_1 = \sum_{u \in \mathcal{U}} y_u$. 
+For a given population counts $\boldsymbol{N_{y}} = (N_0, N_1)$, 
+$L_u\left( \boldsymbol{\pi} \right) = L_u\left( \boldsymbol{\pi}; \boldsymbol{N_{y}} \right) = f\left( \boldsymbol{y} \right)$. Then the complete-data log-likelihood function can be expressed as 
+
+\begin{eqnarray}
+\label{cohort_loglik}
+\ell\left(\boldsymbol{\pi} \right) & = & \log f\left(\boldsymbol{y}\right) 
+\nonumber \\
+        & = & \sum_{u \in \mathcal{U}} \log f\left(y_u\right) \nonumber \\
+        & = & N_1 \log \pi + (N-N_1) \log (1-\pi). \nonumber \\
+\end{eqnarray}
+One may note that the score function for an observed population counts 
+$\boldsymbol{N_y}$ can be written as 
+$S \left(\boldsymbol{\pi}\right) = \frac{\partial}{\partial \pi} \ell(\pi) = 
+\frac{1}{L_t\boldsymbol{\theta}} \: \frac{\partial L_t\left(\boldsymbol{\theta}\right)}
+{\partial \boldsymbol{\theta}} = \frac{1}{L_t\boldsymbol{\theta}} 
+\prod_{u \in \mathcal{U}} \frac{\partial}{\partial \boldsymbol{\theta}} 
+f_{\boldsymbol{\theta}}(y_u)$.
+
+
+## Weighted (pseudo) likelihood
+
+
+
+population \in \mathbb{R}$ Suposse X a population of interest follawing a 
+
+
+
+
+## Likelihood plot simple example
+Here we show some simulation results...
+
+```{r pressure, echo=FALSE, warning=FALSE, message=FALSE }
+# #
+# # This is a Shiny web application. You can run the application by clicking
+# # the 'Run App' button above.
+# #
+# # Find out more about building applications with Shiny here:
+# #
+# #    http://shiny.rstudio.com/
+# #
+# 
+# library(shiny)
+# library(ggplot2)
+# allcomb <- function(seqs){    ### check efficiency using expand.grid - each step i expand.grid(1:ncurrent, vari) > then cbind()!!!!!!!!!!!!!!!!!!!!!!!!! to use in th prodALLcols function!!!
+#   nseq <- unlist(lapply(seqs, function(x) {
+#     if(is.null(dim(x))) length(x)
+#     else nrow(x)
+#   })) # number of values for each seq 
+#   if(is.null(dim(seqs[[1]])) && is.null(dim(seqs[[2]]))){
+#     row2 <- rep.int(seqs[[2]], rep.int(nseq[1],nseq[2]))
+#     ctab <- cbind(seqs[[1]], row2)   # current table
+#   } else if(is.null(dim(seqs[[1]])) && !is.null(dim(seqs[[2]]))){
+#     stop("under construction...")
+#   } else if(is.null(dim(seqs[[1]])) && is.null(dim(seqs[[2]]))){
+#     stop("under construction...")
+#   } else{
+#     row2 <- rep.int(1:nseq[2], rep.int(nseq[1],nseq[2]))
+#     ctab <- cbind(seqs[[1]][rep(1:nseq[1],nseq[2]),], seqs[[2]][row2,])  
+#   }
+#   
+#   if(length(seqs) == 2) {
+#     return( ctab ) 
+#   } else{
+#     stop("'allcomb' to 'length(seqs) > 2' under construction...")
+#     #     #     for(i in 3:(length(seq)-1)){
+#     #     for(i in 3:length(seqs)){
+#     #       crow = rep.int(seqs[[i]], rep.int(nrow(ctab),nseq[i]))
+#     #       ctab = cbind(ctab[rep(1:nrow(ctab), nseq[i]),], crow)
+#     #     }
+#   }
+# }
+# 
+# # Define UI for application that draws a histogram
+# ui <- fluidPage(
+#    
+#    # Application title
+#    titlePanel("Binary Variable Likelihood Function for Finite Population"),
+#    
+#    # Sidebar with a slider input for number of bins 
+#    sidebarLayout(
+#       sidebarPanel(
+#          sliderInput("N",
+#                      "Population size (N):",
+#                      min = 1,
+#                      max = 30000,
+#                      value = 15000),
+#          # sliderInput("N1",
+#          #             "Population number of cases (N1):",
+#          #             min = 1,
+#          #             max = 30000,
+#          #             value = 750),
+#          sliderInput("p",
+#                      "Population probability of success (p):",
+#                      min = 0,
+#                      max = 1,
+#                      value = 0.5),
+#          sliderInput("n",
+#                      "Sample size (n):",
+#                      min = 1,
+#                      max = 1500,
+#                      value = 50),
+#          sliderInput("nsimMC",
+#                      "Monte Carlo simulation size (MC):",
+#                      min = 0,
+#                      max = 1000000,
+#                      value = 1000),
+#          actionButton("simulate", "Simulate!")
+#       ),
+#       
+#       # Show a plot of the generated distribution
+#       mainPanel(
+#          plotOutput("distPlot"),
+#          verbatimTextOutput("text")
+#       )
+#    )
+# )
+# 
+# # Define server logic required to draw the likelihood functions
+# server <- function(input, output) {
+#    
+#   observeEvent(input$simulate, {
+#     # generate bins based on input$bins from ui.R
+#     y <- rbinom(input$N,1,input$p)  # finite pop. sampled sample from Y ~ Bernoulli(p)
+#     U <- 1:input$N            # set of indexes for population
+#     S <- sample(U, input$n)   # sample of size n from U
+#     rangep <- seq(0,1,0.001)
+#     
+#     # dpfp <- data.frame(p = rangep, lu0=dbinom(0, 1, rangep, log=T), 
+#     #                    lu1=dbinom(1, 1, rangep, log=T), 
+#     #                    lypop=dbinom(sum(y), input$N, rangep, log=T), 
+#     #                    lysub=dbinom(sum(y[S]), input$n, rangep, log=T))
+#     lu0 <- dbinom(0, 1, rangep, log=T)
+#     lu1 <- dbinom(1, 1, rangep, log=T)
+#     # pop loglikelihood
+#     lypop <- dbinom(sum(y), input$N, rangep, log=T) 
+#     freqN <- table(y)/length(y)
+#     # sample loglikelihood
+#     lysub <- dbinom(sum(y[S]), input$n, rangep, log=T)
+#     freqn <- table(y[S])/length(y[S])
+#     # Monte Carlo loglikelihood
+#     MCsamp <- rbinom(input$nsimMC, input$N, freqn[2])
+#     ii <- allcomb(list(1:input$nsimMC, 1:length(rangep)))
+#     MCl <- dbinom(MCsamp[ii[,1]], input$N, rangep[ii[,2]], log=T)
+#     lyMC <- log(colMeans(matrix(exp(MCl), nrow = input$nsimMC, 
+#                                 ncol = length(rangep))))
+#     
+#     dpfp <- data.frame(p = rangep, 
+#                        lu0 = -lu0/sum(lu0[is.finite(lu0)]), 
+#                        lu1 = -lu1/sum(lu1[is.finite(lu1)]), 
+#                        lypop = -lypop/sum(lypop[is.finite(lypop)]), 
+#                        lysub = -lysub/sum(lysub[is.finite(lysub)]),
+#                        lyMC = -lyMC/sum(lyMC[is.finite(lyMC)]))
+#     
+#     # x    <- faithful[, 2] 
+#     # bins <- seq(min(x), max(x), length.out = input$bins + 1)
+#     
+#     output$distPlot <- renderPlot({
+#       
+#     # draw the histogram with the specified number of bins
+#     # hist(x, breaks = bins, col = 'darkgray', border = 'white')
+#     # plotA <- ggplot(dpfp, aes(p, lu1)) + geom_ribbon(aes(ymin =  lu0 - freqn[1]/2, ymax =  lu0 + freqn[1]/2), fill="grey") +
+#     #   geom_ribbon(aes(ymin = lu1 - freqn[2]/2, ymax = lu1 + freqn[2]/2), fill="grey") +
+#     #   geom_vline(xintercept = freqn[2], color="red")
+#     # gplotB <- ggplot(dpfp, aes(p, lypop)) + geom_line(color="blue") + geom_vline(xintercept = freqn[2], color="red")
+#     # gplotC <- ggplot(dpfp, aes(p, lysub)) + geom_line(color="green") + geom_vline(xintercept = freqn[2], color="red")
+#     # multiplot(gplotB, gplotC)
+#     # ggplot(dpfp, aes(rangep, lypop)) + labs(y="Standardised likelihoods", x="p") + 
+#     #   geom_ribbon(aes(ymin =  lu0 - freqn[1]/1000, ymax =  lu0 + freqn[1]/1000), fill="grey") + 
+#     #   geom_ribbon(aes(ymin = lu1 - freqn[2]/1000, ymax = lu1 + freqn[2]/1000), fill="grey") + 
+#     #   geom_line(color="blue", size=1) + 
+#     #   geom_line(aes(rangep, lysub), color="green", size=1) + 
+#     #   geom_vline(xintercept = input$p, color="red") + 
+#     #   geom_vline(xintercept = freqN[2], color="blue") + 
+#     #   geom_vline(xintercept = freqn[2], color="green") 
+#     # 
+# 
+#     ggplot(dpfp, aes(rangep, lypop)) + labs(y="Standardised likelihoods") + 
+#       geom_ribbon(aes(ymin =  lu0 - freqn[1]/1000, ymax =  lu0 + freqn[1]/1000), fill="grey") + 
+#       geom_ribbon(aes(ymin = lu1 - freqn[2]/1000, ymax = lu1 + freqn[2]/1000), fill="grey") + 
+#       geom_line(aes(rangep, lypop, colour="Pop"), size=1) + 
+#       geom_line(aes(rangep, lysub, colour="Samp"), size=1) + 
+#       geom_line(aes(rangep, lyMC, colour="MC"), size=1) + 
+#       scale_colour_manual(name="LogLik" , values=c(Pop="blue", Samp="green", MC="orange")) +
+#       geom_vline(xintercept = input$p, color="red") + 
+#       geom_vline(xintercept = freqN[2], colour="blue") + 
+#       geom_vline(xintercept = freqn[2], colour="green")  + 
+#       geom_vline(xintercept = rangep[lyMC==max(lyMC)], colour="orange") #+ 
+# #      theme(legend.position = "bottom")
+# 
+#         
+#         
+#     
+#     # pp <- c(subset(gplotB$layout, name == "panel", se = t:r))
+#     # gtable <- gtable_add_grob(gplotB, gplotC$grobs[[which(gplotC$layout$name == "panel")]], 
+#     #                           pp$t, pp$l, pp$b, pp$l)
+#     # 
+#     # # axis tweaks
+#     # ia <- which(gplotC$layout$name == "axis-l")
+#     # ga <- gplotC$grobs[[ia]]
+#     # ax <- ga$p
+#     # ax$widths <- rev(ax$widths)
+#     # ax$grobs <- rev(ax$grobs)
+#     # ax$grobs[[1]]$x <- ax$grobs[[1]]$x - unit(1, "npc") + unit(0.15, "cm")
+#     # gtable <- gtable_add_cols(gtable, gplotC$widths[gplotC$layout[ia, ]$l], 
+#     #                           length(gtable$widths) - 1)
+#     # gtable <- gtable_add_grob(gtable, ax, pp$t, length(gtable$widths) - 1, pp$b)
+#     # 
+#     # # drawing the plot with two y-axis
+#     # grid.draw(gtable)
+#     })
+#     
+#     output$text <- renderText({
+#       bias <- c(freqN[2], freqn[2], rangep[lyMC==max(lyMC)]) - input$p 
+#       names(bias) <- c("lpop", "lsample", "lMC")
+#       paste("Bias: \n")
+#       paste(c("lpop = ", "lsample = ", "lMC = "), format(bias, digits=2))
+#     })
+#     
+#   })
+#   
+# }
+# 
+# # Run the application 
+# shinyApp(ui = ui, server = server)
+library(shiny)
+library(ggplot2)
+library(plotly)
+
+
+
+## function
+allcomb <- function(seqs){    ### check efficiency using expand.grid - each step i expand.grid(1:ncurrent, vari) > then cbind()!!!!!!!!!!!!!!!!!!!!!!!!! to use in th prodALLcols function!!!
+  nseq <- unlist(lapply(seqs, function(x) {
+    if(is.null(dim(x))) length(x)
+    else nrow(x)
+  })) # number of values for each seq 
+  if(is.null(dim(seqs[[1]])) && is.null(dim(seqs[[2]]))){
+    row2 <- rep.int(seqs[[2]], rep.int(nseq[1],nseq[2]))
+    ctab <- cbind(seqs[[1]], row2)   # current table
+  } else if(is.null(dim(seqs[[1]])) && !is.null(dim(seqs[[2]]))){
+    stop("under construction...")
+  } else if(is.null(dim(seqs[[1]])) && is.null(dim(seqs[[2]]))){
+    stop("under construction...")
+  } else{
+    row2 <- rep.int(1:nseq[2], rep.int(nseq[1],nseq[2]))
+    ctab <- cbind(seqs[[1]][rep(1:nseq[1],nseq[2]),], seqs[[2]][row2,])  
+  }
+  
+  if(length(seqs) == 2) {
+    return( ctab ) 
+  } else{
+    stop("'allcomb' to 'length(seqs) > 2' under construction...")
+    #     #     for(i in 3:(length(seq)-1)){
+    #     for(i in 3:length(seqs)){
+    #       crow = rep.int(seqs[[i]], rep.int(nrow(ctab),nseq[i]))
+    #       ctab = cbind(ctab[rep(1:nrow(ctab), nseq[i]),], crow)
+    #     }
+  }
+}
+
+## Define UI for application that draws a histogram
+ui <- fluidPage(
+   
+   # Application title
+   titlePanel("Binary Variable Likelihood Function for Finite Population"),
+   
+   # Sidebar with a slider input for number of bins 
+   sidebarLayout(
+      sidebarPanel(
+         sliderInput("N",
+                     "Population size (N):",
+                     min = 1,
+                     max = 30000,
+                     value = 15000),
+         # sliderInput("N1",
+         #             "Population number of cases (N1):",
+         #             min = 1,
+         #             max = 30000,
+         #             value = 750),
+         sliderInput("p",
+                     "Population probability of success (p):",
+                     min = 0,
+                     max = 1,
+                     value = 0.5),
+         sliderInput("n",
+                     "Sample size (n):",
+                     min = 1,
+                     max = 1500,
+                     value = 50),
+         sliderInput("nsimMC",
+                     "Monte Carlo simulation size (MC):",
+                     min = 0,
+                     max = 1000000,
+                     value = 1000),
+         actionButton("simulate", "Simulate!")
+      ),
+      
+      # Show a plot of the generated distribution
+      mainPanel(
+         plotlyOutput("distPlot"),
+         verbatimTextOutput("text")
+      )
+   )
+)
+
+## Define server logic required to draw the likelihood functions
+server <- function(input, output) {
+   
+  observeEvent(input$simulate, {
+    # generate bins based on input$bins from ui.R
+    y <- rbinom(input$N,1,input$p)  # finite pop. sampled sample from Y ~ Bernoulli(p)
+    U <- 1:input$N            # set of indexes for population
+    S <- sample(U, input$n)   # sample of size n from U
+    rangep <- seq(0,1,0.001)
+    
+    # dpfp <- data.frame(p = rangep, lu0=dbinom(0, 1, rangep, log=T), 
+    #                    lu1=dbinom(1, 1, rangep, log=T), 
+    #                    lypop=dbinom(sum(y), input$N, rangep, log=T), 
+    #                    lysub=dbinom(sum(y[S]), input$n, rangep, log=T))
+    lu0 <- dbinom(0, 1, rangep, log=T)
+    lu1 <- dbinom(1, 1, rangep, log=T)
+    # pop loglikelihood
+    lypop <- dbinom(sum(y), input$N, rangep, log=T) 
+    freqN <- table(y)/length(y)
+    # sample loglikelihood
+    lysub <- dbinom(sum(y[S]), input$n, rangep, log=T)
+    freqn <- table(y[S])/length(y[S])
+    # Monte Carlo loglikelihood
+    MCsamp <- rbinom(input$nsimMC, input$N, freqn[2])
+    ii <- allcomb(list(1:input$nsimMC, 1:length(rangep)))
+    MCl <- dbinom(MCsamp[ii[,1]], input$N, rangep[ii[,2]], log=T)
+    lyMC <- log(colMeans(matrix(exp(MCl), nrow = input$nsimMC, 
+                                ncol = length(rangep))))
+    
+    dpfp <- data.frame(p = rangep, 
+                       lu0 = -lu0/sum(lu0[is.finite(lu0)]), 
+                       lu1 = -lu1/sum(lu1[is.finite(lu1)]), 
+                       lypop = -lypop/sum(lypop[is.finite(lypop)]), 
+                       lysub = -lysub/sum(lysub[is.finite(lysub)]),
+                       lyMC = -lyMC/sum(lyMC[is.finite(lyMC)]))
+    
+    # x    <- faithful[, 2] 
+    # bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    
+    output$distPlot <- renderPlotly({
+
+     # print(
+        ggplotly(
+        ggplot(dpfp, aes(rangep, lypop)) + labs(y="Standardised likelihoods") + 
+      geom_ribbon(aes(ymin =  lu0 - freqn[1]/1000, ymax =  lu0 + freqn[1]/1000), fill="grey") + 
+      geom_ribbon(aes(ymin = lu1 - freqn[2]/1000, ymax = lu1 + freqn[2]/1000), fill="grey") + 
+      geom_line(aes(rangep, lypop, colour="Pop"), size=1) + 
+      geom_line(aes(rangep, lysub, colour="Samp"), size=1) + 
+      geom_line(aes(rangep, lyMC, colour="MC"), size=1) + 
+      scale_colour_manual(name="LogLik" , values=c(Pop="blue", Samp="green", MC="orange")) +
+      geom_vline(xintercept = input$p, color="red") + 
+      geom_vline(xintercept = freqN[2], colour="blue") + 
+      geom_vline(xintercept = freqn[2], colour="green")  + 
+      geom_vline(xintercept = rangep[lyMC==max(lyMC)], colour="orange") #+ 
+#      theme(legend.position = "bottom")
+        )
+      #)   
+    })
+    
+    output$text <- renderText({
+      bias <- c(freqN[2], freqn[2], rangep[lyMC==max(lyMC)]) - input$p 
+      names(bias) <- c("lpop", "lsample", "lMC")
+      c(paste("Bias: \n"), paste(c("lpop = ", "  ---  lsample = ", "  ---  lMC = "), format(bias, digits=2), sep=""))
+    })
+    
+  })
+  
+}
+
+## Run the application 
+shinyApp(ui = ui, server = server)
+
+```
+
+
+
+## Likelihood theory for infinite population
+Supose a finite pop $f$, and a simple random sample of size $n$ from $f$, then...  
+
+Following likelihood theory the maximum likelihood estimator is given by $S \left(\boldsymbol{\pi}\right) = \frac{\partial}{\partial \pi} \ell(\pi) = \boldsymbol{0}$, when the maximum is exists...  
+
+Also consider $J \left(\boldsymbol{\pi}\right) = - \frac{\partial}{\partial \pi} S(\pi)$ the observed Fisher information, and the expected Fisher information is $I \left(\boldsymbol{\pi}\right) = E \left[ J \left(\boldsymbol{\pi} \right) \right]$.  
+
+If regularity conditions are satisfied then $I \left(\boldsymbol{\pi}\right) = Var \left[ S\left(\boldsymbol{\pi}\right) \right]$.  
+
+By the weak law of large numbers $ $. Also the central limit theorem holds for .... to compare to clt for finite pop. $\sum_{i=1}^N$ but a sample $n$ is observed... or $\sum_{i=1}^n$ and connect to missing....  
+
+## Parameters of superpopulation and survey population
+In Godambe and Thompson (1986???) (.. other references???...) the authors discuss the simultaneous estimation of superpopulation model and survey (finite population) parameters. The estimation equation theory applied to this problem is shown to give optimal, which means design unbiased and minimal joint mean squared error with respect to the sampling design and the model.  
+
+### Superpopulation model
+Assume the simple linear model $Y = \beta \: X + \mathcal{E}$, where $X=x$ is a realization of a random variable (...), $E \left( \mathcal{E} \right) = 0$ and $Var \left( \mathcal{E} \right) = \sigma^2$. We call $\beta$ the superpopulation parameter of interest, and assuming that we observe a finite population of 
+size $N$, $(x_i, y_i)$ for $i=1, \ldots, N$, denote $\beta_N$ the least square estimation of $\beta$.  
+
+Assume that $\boldsymbol{y} = (y_1, \ldots, y_N)$ is generated from a distribution $ $ where is known to be a member of a class  $C = \left\{ \xi \right\}$. $C$ is then called a *superpopulation model*. Estimating equantion theory theory for $\boldsymbol{\theta}$ can be used to show that, for a given function $g(\boldsymbol{y}, \boldsymbol{\theta})$ for all $g(\cdot) \in C$, $E_{\xi} \left[ g(\boldsymbol{y}, \boldsymbol{\theta}(\xi)) \right]=\boldsymbol{0}$. 
+
+If we have complete population information, then by the law of large numbers $\beta_N$ converges to the superpopulation parameter $\beta$ as $N$ increases. But we do not observe all Elements in $\mathcal{U}$, so the aim is also to estimate $\boldsymbol{\beta_N}$.
+
+### Finite population
+Chapter 3 Godambe and Thompson (1986)...
+
+
+
+## Mathematical Results 
+
+Obs. 1: $E \left[ e^{ix} \right] = \sum_{k=0}^n \dfrac{(ix)^k}{k!} E[X^k],\hspace{2cm} t \rightarrow 0$  
+
+Obs. 2: (Taylos expansion) (Billingsley 3rd ed., pg. 345) Define a $X$ random variable in a probability space... . If $E \left( X^2 \right)$ is finite, then 
+$$ \phi \left( \boldsymbol{t} \right) = 1 + i \boldsymbol{t}^\top E \left( \boldsymbol{X} \right) + \frac{ i^2  }{2} \boldsymbol{t}^\top E \left( \boldsymbol{X}^\top \boldsymbol{X} \right) \boldsymbol{t} + o \left( \boldsymbol{t}^\top \boldsymbol{t} \right),\hspace{4cm} \boldsymbol{t} \rightarrow \boldsymbol{0}.$$
+...to check Cramer-Wold device/theorem...
+
+Obs. 3: Lemma (Importance Sampling convergence) Assume that conditions for the Strong Law of Large Numbers (SLLN) holds for a colection of $X_1, X_2, \ldots, X_n$ independent and identically distributed random variables (defined in a continuous space $\mathcal{X}$) from $g$ (coninuous). Also consider a function $f$ and assume that $x_1, x_2, \ldots , x_n$ are  sampled from $g$, so
+$$ n^{-1} \sum_{i=1}^n \frac{f(x_i)}{g} \xrightarrow[]{a.s} E \left[ f \right].$$
+Proof:   
+It follow from the SLLN that 
+\begin{eqnarray}
+\label{importance_sampling}
+n^{-1} \sum_{i=1}^n \frac{f(x_i)}{g} 
+    & \xrightarrow[]{a.s} & E \left[ \frac{f(x_i)}{g} \right] \nonumber \\
+    & = & \int_{\mathcal{X}} \frac{f(x_i)}{g} g \nonumber \\
+    & = & E \left[ f \right].
+\end{eqnarray}
+The $\mathcal{X}$ discrete case follows straight from the definition of discrete function. 
