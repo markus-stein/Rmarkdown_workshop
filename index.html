@@ -44,7 +44,6 @@ class: center, middle, inverse, title-slide
 ---
 # O que você vai precisar
 
-
 * Pacotes do R:  
 
   + `rmarkdown` e `knitr`, e pacotes auxiliares `diplyr`, `tidyr`;
@@ -124,8 +123,10 @@ O pacote `knitr` possui a função `pandoc()` que é um *wrapper* para
 executar o programa `pandoc` no sistema.
 
 
-```
-## [1] "examples/exemplo-rmarkdown-0.html"
+```r
+# install.packages("knitr")
+library(knitr)
+pandoc(input = "examples/exemplo-rmarkdown-0.md", format = "html")
 ```
 
 Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/exemplo-rmarkdown-0.html) no navegador.
@@ -133,12 +134,6 @@ Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/
 
 ---
 # Comunicação Estatística
-&lt;!-- https://github.com/rstudio-education/communicate-rmd-workshop --&gt;
-&lt;!-- https://github.com/dtkaplan/shinymark/blob/master/00-welcome/00-welcome.pdf --&gt;
-&lt;!-- https://bookdown.org/yihui/rmarkdown/css-and-themes.html --&gt;
-&lt;!-- https://r4ds.had.co.nz/r-markdown.html --&gt;
-&lt;!-- curso-R --&gt;
-&lt;!-- https://gitlab.procc.fiocruz.br/oswaldo/DS_2017/blob/153495ccebb0b66766b79c695bd01a38ae0dda47/markdown/markdown.md --&gt;
 
 * Comunicação em vários sentidos  
 
@@ -158,28 +153,30 @@ Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/
 ---
 # Comunicação Estatística
 
-`Fisher` + `milionária` = `"Statistical Methods for Research Workers"`
 
+```r
+Fisher + milionária = "Statistical Methods for Research Workers"
+```
 
 ![](https://www.nature.com/news/polopoly_fs/7.33601.1454417604!/image/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg_gen/derivatives/landscape_300/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg)
 
+
 ---
+
 # Comunicação Estatística
 
 ![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-31.gif)
 
+
 ---
+
 # Comunicação Estatística
 
 ![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-32.gif)
-&lt;!-- ![](https://static01.nyt.com/images/2019/02/17/magazine/17mag-coders-pics-slide-QBW6/17mag-coders-pics-slide-QBW6-superJumbo.png?quality=90&amp;auto=webp) --&gt;
 
- &lt;!-- https://www.pinterest.com/amstatnews/statistics-history/ --&gt;
-
-
-&lt;!-- install.packages(c("")) --&gt;
 
 ---
+
 # Comunicação Estatística
 
 ## Surgimento dos computadores pessoais
@@ -188,7 +185,9 @@ Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/
 
 
 ---
+
 # Comunicação Estatística
+
 ![](https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif)
 
 ### Como combinar diferentes tecnologias?
@@ -208,6 +207,7 @@ Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/
 
 
 --- 
+
 # R e Markdown
 
 ### O pacote `rmarkdown` e a função `render()`
@@ -221,12 +221,12 @@ Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/
   + Prof. Rodrigo dos Reis
 
 
-
 ---
 
 class: inverse, middle, center
 background-image: url("images/rodrigo/rmarkdown.png")
 background-size: contain
+
 
 ---
 
@@ -252,6 +252,7 @@ background-size: contain
   Documents for R*. R package version 1.10.
 ]
 
+
 ---
 
 background-image: url("images/rodrigo/bandThree2.png")
@@ -262,8 +263,12 @@ background-size: cover
 &lt;img src="images/rodrigo/rmarkdownflow.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 - Quando compilado, o **R Markdown** alimenta o arquivo .Rmd para **knitr**, que executa todos os fragmentos de código e cria um novo documento markdown (.md) que inclui o código e sua saída.
+
 - O arquivo markdown gerado pelo **knitr** é então processado pelo **pandoc**⧉ que é responsável pela criação do formato final.
-- Isso pode parecer complicado, mas o **R Markdown** torna extremamente simples encapsulando todo o processamento acima em uma única função de renderização.
+
+- Isso pode parecer complicado, mas o **R Markdown** torna extremamente simples encapsulando todo o processamento acima em uma 
+única função de renderização.
+
 
 ---
 
@@ -479,6 +484,7 @@ gapminder
 
 
 ```r
+# install.packages(dplyr)
 library(dplyr)
 gapminder &lt;- gapminder %&gt;%
   mutate(pop_m = pop/1e6)
@@ -557,6 +563,11 @@ summary(gapminder07$pop_m)
     ```
 
 - Saída:
+
+```
+## Warning: package 'knitr' was built under R version 3.5.3
+```
+
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -624,6 +635,7 @@ class: center, inverse
 
 # Um último exemplo!
 
+
 ---
 
 background-image:  url("images/rodrigo/porquecomprar-v2.gif")
@@ -632,38 +644,44 @@ class: center, middle, inverse
 
 # Perguntas!?!
 
+
 ---
+
 # Meus exemplos de R Markdown
 
 * Planos de aula  
   + abra o arquivo `Exemplo_rmd_logo_PlanoAula.Rmd` na pasta `estendendo_rmd_exemplos`
   + clique no botão `knit`
   + se der erro com o LATEX tentar instalar o pacote `tinitex` do R
-&lt;!-- ``` --&gt;
-&lt;!-- library(rmarkdown) --&gt;
-&lt;!-- render("estendendo_rmd_exemplos/Exemplo_rmd_shinny_MCMLnotes.Rmd") --&gt;
-&lt;!-- ``` --&gt;
+
 
 * Relatório técnico com `shiny`  
   + abra o arquivo `Exemplo_rmd_shiny_MCMLnotes.Rmd`
   + clique no botão `&gt; Run Document`
 
 
-* slides `ioslides`
+* Slides com `ioslides`
   + 1º Datathon UFRGS - [](ufrgs.br/datathon)  
   + Arquivos do projeto RStudio em https://github.com/datathon-ufrgs/website
 
 
-
 ### Importante: grandes projetos necessitam maior organização!!!
-* Projetos em R e ` .Rproj `
-* `Git` e `Github`?
+* Projetos em R e `.Rproj`
+* Ferramentas `Git` e `Github`?
 
 
 ---
 
-## Slides - pacote xaringan
-De novo, autor Yiuhi
+# Slides - pacote `xaringan`
+Autor Yiuhi Xie
+
+
+```r
+install.packages("xaringan")
+```
+
+* Crie um novo documento `xaringan` em   
+`File &gt; New File &gt; R Markdown &gt; From Template &gt; Ninja Presentation {xaringan}`
 
 Exemplo:
 
@@ -672,25 +690,38 @@ Exemplo:
 
 ---
 
-## Curriculum - pacote `vitae`
+# Curriculum - pacote `vitae`
+Autor Mitchell O'Hara-Wild
 
-https://github.com/mitchelloharawild/vitae
 
-https://docs.ropensci.org/vitae/  
+```r
+install.packages('vitae')
+```
+
+
+## https://github.com/mitchelloharawild/vitae
+
+
+## https://docs.ropensci.org/vitae/  
 
 
 
 ---
 
-## Artigos - pacote `rticles`
-De novo autor Yiuhi  
+# Artigos - pacote `rticles`
+Autor Yiuhi Xie
 
-* https://github.com/rstudio/rticles
+
+```r
+install.packages("rticles")
+```
+
+## https://github.com/rstudio/rticles
 
 
 ---
 
-## Livros - pacote `bookdown`
+# Livros - pacote `bookdown`
 
 Livro  
 * bookdown: Authoring Books and Technical Documents with R Markdown  
@@ -702,7 +733,7 @@ Exemplos Juliana: `bookdown` e `learnr`
 
 ---
 
-## Websites - pacote `blogdown`
+# Websites - pacote `blogdown`
 
 Livro  
 * blogdown: Creating Websites with R Markdown  
@@ -720,15 +751,14 @@ Github repositories:
 
 ## Pôster - pacote `pagedown`
 
+## Tutoriais - pacote `learnr`
+
+## Provas - pacote `rexams`
+
 
 ---
 
-## Provas - pacotes `rexams` e `learnr`
-
-
----
-
-Referências (e eventos)
+# Referências (e eventos)
 
 * Workshop UseR!2019 - https://github.com/rstudio-education/communicate-rmd-workshop    
   + Datathon (Rmarkdown + Shiny): https://user2019.r-project.org/datathon/
@@ -745,14 +775,17 @@ Referências (e eventos)
 
 ---
 
-## Thanks!
+# Thanks!
 
 ![](https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif)
 
 
-### https://github.com/markus-stein/Rmarkdown_workshop
 
-### markus.stein@ufrgs.br
+
+## https://github.com/markus-stein/Rmarkdown_workshop
+
+
+## markus.stein@ufrgs.br
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
