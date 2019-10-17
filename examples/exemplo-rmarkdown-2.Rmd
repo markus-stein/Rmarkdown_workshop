@@ -1,0 +1,109 @@
+---
+title: "Exemplo 1 - Rmd"
+author: "Rodrigo Citton P. dos Reis"
+date: "15 de outubro de 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introdução
+
+Este é um exemplo de arquivo R Markdown para o minicurso __Pintando e bordando no R__.
+
+## Dados de expectativa de vida
+
+Iremos explorar algumas funcionalidades do `R`.
+
+```{r, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+# ----------------------------------
+# Porto Alegre, 15 de outubro de 2018
+# Script de exemplo Rmarkdown
+# Autor: Rodrigo
+
+# ----------------------------------
+# Carregando pacotes
+
+library(gapminder)
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(compareGroups)
+
+# ----------------------------------
+# Manipulação de dados
+
+gapminder <- gapminder %>%
+  mutate(pop_m = pop/1e6)
+
+gapminder$gdpPercap.cat <- cut(gapminder$gdpPercap,
+                               breaks = c(0, 1005, 3955, 12235, Inf),
+                               labels = c("Baixa-renda", "Renda média-baixa",
+                                          "Renda média-alta", "Renda alta"))
+
+gapminder07 <- gapminder %>%
+  filter(year == 2007)
+
+```
+
+A tabela a seguir descreve as variáveis do banco de dados.
+
+
+```{r, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE, results='asis'}
+gapm.df <- as.data.frame(gapminder07)
+
+res <- compareGroups(continent ~ . - year - country,
+                     data = gapm.df)
+restab <- createTable(res)
+export2md(restab, caption = "Características dos grupos do estudo.",
+          header.labels = c(p.overall = "p-valor"))
+```
+
+- Um resumo numérico pode ser inserido na própria linha.
+    + __Exemplo:__ o valor máximo para a variável expectativa de vida observado foi `r max(gapminder07$lifeExp)` no país `r as.character(gapminder07$country[which.max(gapminder07$lifeExp)])`.
+    
+### Um gráfico de dispersão
+
+Podemos inserir legendas às figuras.
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE, fig.cap="Gráfico de dispersão entre renda e expectativa de vida."}
+p <- ggplot(data = gapminder07,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          color = continent, size = pop_m)) + 
+  geom_point() +
+  labs(x = "Renda per capita (US$)",
+       y = "Expectativa de vida (anos)",
+       color = "Continente", size = "População/1 milhão") +
+  theme_bw()
+p
+```
+
+#### Ajustando um modelo de regressão
+
+A tabela a seguir a apresenta o ajuste de um modelo de regressão linear.
+
+```{r, echo=FALSE, results='asis'}
+
+library(knitr)
+
+mod1 <- lm(lifeExp ~ gdpPercap, data = gapminder07)
+kable(summary(mod1)$coef, caption = "Modelo 1. Regressão linear simples.")
+
+```
+
+##### Um último gráfico
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE, fig.cap="Gráfico com ajuste de regressão local."}
+# ----------------------------------
+# Um gráfico exploratório
+
+p + geom_smooth(mapping = aes(x = gdpPercap, y = lifeExp, color = NULL),
+                method = "loess")
+
+
+```

@@ -1,0 +1,36 @@
+---
+title: "Relatório Gapminder"
+subtitle: "Ano `r unique(gpm$year)`"
+author: "Rodrigo Citton P. dos Reis"
+date: "15 de outubro de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Relação Renda per capita e Expectativa de vida
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE, fig.cap="Gráfico com ajuste de regressão local."}
+# ----------------------------------
+# Carregando pacotes
+
+library(dplyr)
+library(ggplot2)
+
+# ----------------------------------
+# Um gráfico exploratório
+
+p <- ggplot(data = gpm,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          color = continent, size = pop_m)) + 
+  geom_point() +
+  labs(x = "Renda per capita (US$)",
+       y = "Expectativa de vida (anos)",
+       color = "Continente", size = "População/1 milhão") +
+  theme_bw()
+p + geom_smooth(mapping = aes(x = gdpPercap, y = lifeExp, color = NULL),
+                method = "loess")
+
+```

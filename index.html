@@ -3,8 +3,8 @@
   <head>
     <title>R Markdown para Comunicação Estatística</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Markus Stein   com cópia de Rodrigo dos Reis  e em colaboração com Márcia Barbian e Silvana Schneider     Departmento de Estatística" />
-    <meta name="date" content="2019-10-16" />
+    <meta name="author" content="Markus Stein   com cópia de Rodrigo dos Reis  e em colaboração com Márcia Barbian e Silvana Schneider     JORNADA DE MATEMÁTICA E ESTATÍSTICA: 60 ANOS IME/UFRGS" />
+    <meta name="date" content="2019-10-17" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
@@ -13,53 +13,99 @@
 class: center, middle, inverse, title-slide
 
 # R Markdown para Comunicação Estatística
-### Markus Stein <br /> <small>com cópia de Rodrigo dos Reis<br /> e em colaboração com Márcia Barbian e Silvana Schneider</small> <br /> <br /> Departmento de Estatística
-### IME-UFRGS
-### 2019-10-16
+### Markus Stein <br /> <small>com cópia de Rodrigo dos Reis<br /> e em colaboração com Márcia Barbian e Silvana Schneider</small> <br /> <br /> JORNADA DE MATEMÁTICA E ESTATÍSTICA: 60 ANOS IME/UFRGS
+### Departamento de Estatística
+### 2019-10-17
 
 ---
 
 
 
 
-&lt;!-- logos jornada datathon semanistica ... no background:--&gt;
-&lt;!-- --- --&gt;
+![](images/cropped-logo-60-transparente.png)
+
+---
+# Visão Geral
+
+* R e Markdown  
+
+* Comunicação Estatística  
+
+* Pacote `rmarkdown`  
+
+* Conceitos básicos  
+
+* Documentos `.Rmd`  
+
+* Extras*
+
 
 ---
 # O que você vai precisar
 
 
-* Pacotes do R: 
-  + `rmarkdown` e `knitr`, e pacotes auxiliares `diplyr`, `tidyr` (`ggplot2`) e `devtools`;
-  + `hugo`, `blogdown`, `bookdown`, `xaringan`.
+* Pacotes do R:  
 
-* Slides com conceitos básicos   
-  + https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1
-
-* Guia rápido de R Markdown (Cheat Sheet)
+  + `rmarkdown` e `knitr`, e pacotes auxiliares `diplyr`, `tidyr`;
+  
+  + Extras: `devtools`, `hugo`, `blogdown`, `bookdown`, `xaringan`, ....  
 
 
+* Material do curso  
 
-&lt;!-- No Rstudio &gt; Terminal --&gt;
-&lt;!-- git clone https://github.com/markus-stein/Rmarkdown_workshop --&gt;
-&lt;!-- rmarkdown::render('arquivo.Rmd', 'xaringan::moonreade ,NaqWER567890') --&gt;
+  + Na aba `Terminal` do RStudio digite:  
+  
+  `git clone https://github.com/markus-stein/Rmarkdown_workshop`  
+  
+  + Slides com conceitos básicos: https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1  
+  
+
+* Guia rápido de R Markdown (Cheat Sheet)  
+
+  + Pasta 'cheatsheet'
+
 
 ---
-# O que é R?
-### E porque R(???)
+# O que é ![Logo do R](http://developer.r-project.org/Logo/Rlogo-5.png)???
+### Por que R(???)
+ &lt;img src="https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg" width="30%" style="display: block; margin: auto;" /&gt;
 
-&lt;!-- # ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='45%', paged.print=FALSE} --&gt;
-&lt;!-- # knitr::include_graphics('images/tobeornottobe1.jpg') --&gt;
-&lt;!-- # ``` --&gt;
+&lt;!-- ![https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg](https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg){width=20%} --&gt;
 
-![](https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg)
+### E por que RStudio?
+
+
+---
+# O que é ![Logo do Markdown](img/markdown.png)?
+### Por que Markdown?
+&lt;!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown --&gt;
+
+Segundo o próprio criador da linguagem:
+
+&gt; *Markdown is a text-to-HTML conversion tool for web writers. Markdown
+&gt; allows you to write using an easy-to-read, easy-to-write plain text
+&gt; format, then convert it to structurally valid XHTML (or HTML).*
+&gt;
+&gt; &gt; John Gruber
+
+- [Markdown] é uma [linguagem de marcação] simples para escrever
+  textos
+- O texto pode ser lido sem nenhum processamento, ou seja, da maneira
+  como está escrito
+- Outras linguagens de marcação como HTML e `\(\LaTeX\)` requerem um grande
+  número de *tags* para formatar o texto, muitas vezes dificultando a
+  leitura do código-fonte
+- A proposta do Markdown é que o escritor se concentre no texto e não na
+  formatação
+- Pode ser convertido para **vários outros formatos** além de HTML
+
 
 ---
 # O que é Markdown?
-&lt;!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown --&gt;
-Exemplo
 
-porque nao latex?
+Exemplo 0:
+
+### Porque nao latex?
 
 ---
 # Comunicação Estatística
@@ -72,9 +118,13 @@ porque nao latex?
 
 * Comunicação em vários sentidos  
     + teorias e metodologias entre os pares da área;  
-    + metodologias e aplicações a outras áreas;
-    + comunicar resultados ao publico em geral.
- Relatorios... artigos... livros... slides... posters... sites... blogs
+    
+    + metodologias e aplicações a outras áreas;  
+    
+    + comunicar resultados ao publico em geral.  
+    
+    
+Relatorios... artigos... livros... slides... posters... sites... blogs
 
 ### Teoria e Prática
 Exemplo:
@@ -112,9 +162,10 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 
 ![](http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg)  
 
+
 ---
 # Comunicação Estatística
-
+![](https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif)
 ### Computadores falicitaram muito, mas analises ainda sao complicadas... 
 
 * Big data
@@ -129,6 +180,7 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 
 ### Conceitos básicos: slides Prof. Rodrigo dos Reis
 
+
 ---
 # Comunicação Estatística
 exercicio... tente diferentes saidas arquivos e slides
@@ -141,9 +193,17 @@ exercicio... tente diferentes saidas arquivos e slides
 
 * plano de aula  
 * Relatorio tecnico   
+* slides - ioslides
 
 Projetos em R
-.Rporj
+.Rproj
+
+
+---
+## Slides - pacote xaringan
+De novo, autor Yiuhi
+
+
 
 ---
 ## Curriculum - pacote vitae
@@ -152,12 +212,6 @@ Instalar no R o pacote
 https://docs.ropensci.org/vitae/
 https://github.com/mitchelloharawild/vitae
 
-
-
-
----
-## Slides - pacote  xaringan
-De novo, autor Yiuhi
 
 
 ---
@@ -172,8 +226,9 @@ https://github.com/rstudio/rticles
 ---
 ## Livros - pacote bookdown
 
+
 ---
-## Websites - básico e pacote blogdown
+## Websites - pacote blogdown
 fazer pagina e divulgar...  
 
 Exemplo: ufrgs.br/datathon
@@ -220,7 +275,7 @@ Github repositories: https://github.com/rbind/blogdown-demo
 &lt;!-- Exemplo posters --&gt;
 
 
-&lt;!-- All in computin is a txt file and a bunch of rules --&gt;
+&lt;!-- All in computing is a txt file and a bunch of rules --&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

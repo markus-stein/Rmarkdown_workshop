@@ -1,7 +1,7 @@
 ---
 title: "R Markdown para Comunicação Estatística"
-author: "Markus Stein <br /> <small>com cópia de Rodrigo dos Reis<br /> e em colaboração com Márcia Barbian e Silvana Schneider</small> <br /> <br /> Departmento de Estatística"
-institute: "IME-UFRGS"
+author: "Markus Stein <br /> <small>com cópia de Rodrigo dos Reis<br /> e em colaboração com Márcia Barbian e Silvana Schneider</small> <br /> <br /> JORNADA DE MATEMÁTICA E ESTATÍSTICA: 60 ANOS IME/UFRGS"
+institute: "Departamento de Estatística"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -18,44 +18,124 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-<!-- logos jornada datathon semanistica ... no background:-->
-<!-- --- -->
+
+![](images/cropped-logo-60-transparente.png)
+
+---
+# Visão Geral
+
+* R e Markdown  
+
+* Comunicação Estatística  
+
+* Pacote `rmarkdown`  
+
+* Conceitos básicos  
+
+* Documentos `.Rmd`  
+
+* Extras*
+
 
 ---
 # O que você vai precisar
 
 
-* Pacotes do R: 
-  + `rmarkdown` e `knitr`, e pacotes auxiliares `diplyr`, `tidyr` (`ggplot2`) e `devtools`;
-  + `hugo`, `blogdown`, `bookdown`, `xaringan`.
+* Pacotes do R:  
 
-* Slides com conceitos básicos   
-  + https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1
-
-* Guia rápido de R Markdown (Cheat Sheet)
+  + `rmarkdown` e `knitr`, e pacotes auxiliares `diplyr`, `tidyr`;
+  
+  + Extras: `devtools`, `hugo`, `blogdown`, `bookdown`, `xaringan`, ....  
 
 
+* Material do curso  
 
-<!-- No Rstudio > Terminal -->
-<!-- git clone https://github.com/markus-stein/Rmarkdown_workshop -->
-<!-- rmarkdown::render('arquivo.Rmd', 'xaringan::moonreade ,NaqWER567890') -->
+  + Na aba `Terminal` do RStudio digite:  
+  
+  `git clone https://github.com/markus-stein/Rmarkdown_workshop`  
+  
+  + Slides com conceitos básicos: https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1  
+  
+
+* Guia rápido de R Markdown (Cheat Sheet)  
+
+  + Pasta 'cheatsheet'
+
 
 ---
-# O que é R?
-### E porque R(???)
+# O que é ![Logo do R](http://developer.r-project.org/Logo/Rlogo-5.png)???
+### Por que R(???)
+ ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='30%', paged.print=FALSE}
+ knitr::include_graphics('https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg')
+ ```
 
-<!-- # ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='45%', paged.print=FALSE} -->
-<!-- # knitr::include_graphics('images/tobeornottobe1.jpg') -->
-<!-- # ``` -->
+<!-- ![https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg](https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg){width=20%} -->
 
-![](https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg)
+### E por que RStudio?
+
+
+---
+# O que é ![Logo do Markdown](img/markdown.png)?
+### Por que Markdown?
+<!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
+
+Segundo o próprio criador da linguagem:
+
+> *Markdown is a text-to-HTML conversion tool for web writers. Markdown
+> allows you to write using an easy-to-read, easy-to-write plain text
+> format, then convert it to structurally valid XHTML (or HTML).*
+>
+> > John Gruber
+
+- [Markdown] é uma [linguagem de marcação] simples para escrever
+  textos
+- O texto pode ser lido sem nenhum processamento, ou seja, da maneira
+  como está escrito
+- Outras linguagens de marcação como HTML e $\LaTeX$ requerem um grande
+  número de *tags* para formatar o texto, muitas vezes dificultando a
+  leitura do código-fonte
+- A proposta do Markdown é que o escritor se concentre no texto e não na
+  formatação
+- Pode ser convertido para **vários outros formatos** além de HTML
+
 
 ---
 # O que é Markdown?
-<!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
-Exemplo
 
-porque nao latex?
+* Um documento Markdown possui a extensão `.md` (não a única possível)  
+
+* Veja o arquivo de exemplo [exemplo-rmarkdown-0.md](examples/exemplo-rmarkdown-0.md)  
+
+* Para converter um documento Markdown em HTML (ou outro formato) é necessário 
+um **conversor**. 
+
+
+
+---
+# Pandoc
+
+O [Pandoc][] é um conversor extremamente versátil, capaz de converter
+diversos formatos, incluindo Markdown para HTML.
+
+Se o Pandoc estiver instalado no seu sistema (Unix) é possível
+converter o documento na linha de comando (shell) com
+
+```{sh, eval=FALSE}
+pandoc -f markdown -t html Exemplo1.md -o Exemplo1.html
+```
+
+O pacote `knitr` possui a função `pandoc()` que é um *wrapper* para
+executar o programa `pandoc` no sistema.
+
+```{r}
+pandoc(input = "exemplos/Exemplo1.md", format = "html")
+```
+
+Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
+[Exemplo1.html](exemplos/Exemplo1.html) no navegador.
+
+
+
 
 ---
 # Comunicação Estatística
@@ -68,9 +148,13 @@ porque nao latex?
 
 * Comunicação em vários sentidos  
     + teorias e metodologias entre os pares da área;  
-    + metodologias e aplicações a outras áreas;
-    + comunicar resultados ao publico em geral.
- Relatorios... artigos... livros... slides... posters... sites... blogs
+    
+    + metodologias e aplicações a outras áreas;  
+    
+    + comunicar resultados ao publico em geral.  
+    
+    
+Relatorios... artigos... livros... slides... posters... sites... blogs
 
 ### Teoria e Prática
 Exemplo:
@@ -108,14 +192,22 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 
 ![](http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg)  
 
+
+---
+# Comunicação Estatística
+![](https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif)
+
+
+
+
 ---
 # Comunicação Estatística
 
 ### Computadores falicitaram muito, mas analises ainda sao complicadas... 
-
-* Big data
 * Modelos e delineamentos complexos  
+* Big data
 
+![]()
 
 --- 
 # R e Markdown
@@ -124,6 +216,7 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 <!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
 
 ### Conceitos básicos: slides Prof. Rodrigo dos Reis
+
 
 ---
 # Comunicação Estatística
@@ -137,9 +230,17 @@ exercicio... tente diferentes saidas arquivos e slides
 
 * plano de aula  
 * Relatorio tecnico   
+* slides - ioslides
 
 Projetos em R
-.Rporj
+.Rproj
+
+
+---
+## Slides - pacote xaringan
+De novo, autor Yiuhi
+
+
 
 ---
 ## Curriculum - pacote vitae
@@ -148,12 +249,6 @@ Instalar no R o pacote
 https://docs.ropensci.org/vitae/
 https://github.com/mitchelloharawild/vitae
 
-
-
-
----
-## Slides - pacote  xaringan
-De novo, autor Yiuhi
 
 
 ---
@@ -168,8 +263,9 @@ https://github.com/rstudio/rticles
 ---
 ## Livros - pacote bookdown
 
+
 ---
-## Websites - básico e pacote blogdown
+## Websites - pacote blogdown
 fazer pagina e divulgar...  
 
 Exemplo: ufrgs.br/datathon
@@ -216,6 +312,6 @@ Github repositories: https://github.com/rbind/blogdown-demo
 <!-- Exemplo posters -->
 
 
-<!-- All in computin is a txt file and a bunch of rules -->
+<!-- All in computing is a txt file and a bunch of rules -->
 
  
