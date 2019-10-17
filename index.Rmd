@@ -65,11 +65,10 @@ options(htmltools.dir.version = FALSE)
 ---
 # O que é ![Logo do R](http://developer.r-project.org/Logo/Rlogo-5.png)?
 ### Por que R(???)
+
  ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='30%', paged.print=FALSE}
  knitr::include_graphics('https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg')
  ```
-
-<!-- ![https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg](https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg){width=20%} -->
 
 ### E por que RStudio?
 
@@ -198,56 +197,46 @@ Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
 ---
 # Comunicação Estatística
 
-![](https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif)
+![](https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif)  
 
-### Computadores falicitaram muito o nosso trabalho, mas as análises continuam a ser complexas. 
+### Computadores falicitaram muito o nosso trabalho, mas os problemas continuam complexos. 
 * Modelos e delineamentos complexos  
-* Big data e aprendizado de máquinas
+* Big data e aprendizado de máquinas    
 
+---
 
 
 --- 
 # R e Markdown
 
 ### Pacote `?rmarkdown` e a função `render()`
-* A função `render()` é uma $wrapper$, internamente chama `knitr::knit()` e converte o documento para '.html' usando o Pandoc.
-
-* Para usar esse função é necessário o 
-  + No RStudio, esse pacote já vem instalado, assim como uma versão embutida do Pandoc.
-
-
-* É um wrapper da função `pandoc`
-<!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
-
-### Conceitos básicos: slides da apresentação 
+* A função `render()` é uma $wrapper$,   
+  + internamente chama `knitr::knit()`  
+  + então converte o documento para `.html` usando o Pandoc.  
 
 
----
-
-
-
-
-
----
-# Comunicação Estatística
-exercicio... tente diferentes saidas arquivos e slides
-<!-- http://cursos.leg.ufpr.br/prr/capDocDin.html -->
-
+### Conceitos básicos: slides da apresentação https://github.com/datathon-ufrgs/website
+* Prof. Rodrigo dos Reis
 
 
 ---
 # Meus exemplos de R Markdown
 
-* Plano de aula  
+* Planos de aula  
+  
 
-* Relatório técnico   
+* Relatório técnico com `shiny`  
 
-* slides
+
+* slides `ioslides`
+  + * 1º Datathon UFRGS - [](ufrgs.br/datathon)  
+  + Arquivos do projeto RStudio em https://github.com/datathon-ufrgs/website
+
+
 
 ### Importante: grandes projetos necessitam maior organização!!!
-* Projetos em R
-.Rproj
-
+* Projetos em R e ` .Rproj `
+* `Git` e `Github`?
 
 ---
 ## Slides - pacote xaringan
@@ -259,9 +248,7 @@ Exemplo:
 
 
 ---
-## Curriculum - pacote vitae
-Instalar no R o pacote
-* 
+## Curriculum - pacote `vitae`
 
 
 https://docs.ropensci.org/vitae/  
@@ -271,29 +258,30 @@ https://github.com/mitchelloharawild/vitae
 
 
 ---
-## Pôster - pacote pagedown
+## Pôster - pacote `pagedown`
 
 
 ---
 ## Artigos - pacote `rticles`
-de novo autor yiuhi
-https://github.com/rstudio/rticles
+De novo autor Yiuhi  
+
+* https://github.com/rstudio/rticles
+
 
 ---
 ## Livros - pacote `bookdown`
+
+Exemplos Juliana:
 
 
 ---
 ## Websites - pacote `blogdown`
 
-Exemplos: 
+Github repositories: 
 
-* 1º Datathon UFRGS - [](ufrgs.br/datathon)  
+* https://github.com/rbind/blogdown-demo
 
-  + Arquivos do projeto no RStudio em 
-  
-
-Github repositories: https://github.com/rbind/blogdown-demo
+* https://github.com/apreshill/blogdown-workshop
 
 
 ---
