@@ -21,17 +21,17 @@ gapminder$gdpPercap.cat <- cut(gapminder$gdpPercap,
 
 for (file in filelist) {
   
-  fp <- paste("C:\\Users\\Rodrigo\\Documents\\PintandoEBordando\\ArquivosR\\relatorio_gapminder\\", file, sep="")
+  fp <- paste("examples/relatorio_gapminder/", file, sep="")
   # print(fp)
 
   # read in continents
   gpm <- gapminder %>% 
     filter(year == file)
   
-  rmarkdown::render(input = "relatorio_gapminder\\rel_gap_template.Rmd", 
+  rmarkdown::render(input = "examples/relatorio_gapminder/rel_gap_template.Rmd", 
                     output_format = "html_document",
                     output_file = paste0("Relatorio_gapminder_", file, ".html"),
-                    output_dir = "relatorio_gapminder\\mult_relatorios",
+                    output_dir = "relatorio_gapminder/mult_relatorios",
                     encoding = "UTF-8")
   
 }
