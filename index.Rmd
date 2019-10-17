@@ -32,7 +32,7 @@ options(htmltools.dir.version = FALSE)
 
 * Conceitos básicos  
 
-* Documentos `.Rmd`  
+* Estendendo documentos ` .Rmd `  
 
 * Extras*
 
@@ -54,7 +54,7 @@ options(htmltools.dir.version = FALSE)
   
   `git clone https://github.com/markus-stein/Rmarkdown_workshop`  
   
-  + Slides com conceitos básicos: https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1  
+  + (Slides com conceitos básicos: https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1)  
   
 
 * Guia rápido de R Markdown (Cheat Sheet)  
@@ -63,7 +63,7 @@ options(htmltools.dir.version = FALSE)
 
 
 ---
-# O que é ![Logo do R](http://developer.r-project.org/Logo/Rlogo-5.png)???
+# O que é ![Logo do R](http://developer.r-project.org/Logo/Rlogo-5.png)?
 ### Por que R(???)
  ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='30%', paged.print=FALSE}
  knitr::include_graphics('https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg')
@@ -75,11 +75,8 @@ options(htmltools.dir.version = FALSE)
 
 
 ---
-# O que é ![Logo do Markdown](img/markdown.png)?
+# O que é Markdown?
 ### Por que Markdown?
-<!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
-
-Segundo o próprio criador da linguagem:
 
 > *Markdown is a text-to-HTML conversion tool for web writers. Markdown
 > allows you to write using an easy-to-read, easy-to-write plain text
@@ -88,15 +85,19 @@ Segundo o próprio criador da linguagem:
 > > John Gruber
 
 - [Markdown] é uma [linguagem de marcação] simples para escrever
-  textos
+  textos  
+  
 - O texto pode ser lido sem nenhum processamento, ou seja, da maneira
-  como está escrito
+  como está escrito  
+  
 - Outras linguagens de marcação como HTML e $\LaTeX$ requerem um grande
   número de *tags* para formatar o texto, muitas vezes dificultando a
-  leitura do código-fonte
+  leitura do código-fonte  
+  
 - A proposta do Markdown é que o escritor se concentre no texto e não na
-  formatação
-- Pode ser convertido para **vários outros formatos** além de HTML
+  formatação  
+  
+- Pode ser convertido para **vários outros formatos** além de HTML  
 
 
 ---
@@ -109,32 +110,25 @@ Segundo o próprio criador da linguagem:
 * Para converter um documento Markdown em HTML (ou outro formato) é necessário 
 um **conversor**. 
 
-
-
----
-# Pandoc
-
-O [Pandoc][] é um conversor extremamente versátil, capaz de converter
+* O [Pandoc][] é um conversor extremamente versátil, capaz de converter
 diversos formatos, incluindo Markdown para HTML.
 
 Se o Pandoc estiver instalado no seu sistema (Unix) é possível
 converter o documento na linha de comando (shell) com
 
 ```{sh, eval=FALSE}
-pandoc -f markdown -t html Exemplo1.md -o Exemplo1.html
+pandoc -f markdown -t html exemplo-rmarkdown-0.md -o exemplo-rmarkdown-0.html
 ```
 
 O pacote `knitr` possui a função `pandoc()` que é um *wrapper* para
 executar o programa `pandoc` no sistema.
 
 ```{r}
-pandoc(input = "exemplos/Exemplo1.md", format = "html")
+# pandoc(input = "examples/exemplo-rmarkdown-0.md", format = "html")
 ```
 
 Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
-[Exemplo1.html](exemplos/Exemplo1.html) no navegador.
-
-
+[Exemplo1.html](examples/exemplo-rmarkdown-0.html) no navegador.
 
 
 ---
@@ -147,6 +141,7 @@ Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
 <!-- https://gitlab.procc.fiocruz.br/oswaldo/DS_2017/blob/153495ccebb0b66766b79c695bd01a38ae0dda47/markdown/markdown.md -->
 
 * Comunicação em vários sentidos  
+
     + teorias e metodologias entre os pares da área;  
     
     + metodologias e aplicações a outras áreas;  
@@ -154,17 +149,16 @@ Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
     + comunicar resultados ao publico em geral.  
     
     
-Relatorios... artigos... livros... slides... posters... sites... blogs
+### Relatórios, artigos, livros, slides, posters, sites, blogs, ...
 
-### Teoria e Prática
-Exemplo:
+## Teoria e Prática
+* Exemplo: `Teoria de prob.` + `tabelas de dists.` = `metodologia`  
 
-Teoria de prob. + tabelas de dists. = metodologia  
 
 ---
 # Comunicação Estatística
 
-Fisher + milionária = "Statistical Methods for Research Workers"
+`Fisher` + `milionária` = `"Statistical Methods for Research Workers"`
 
 
 ![](https://www.nature.com/news/polopoly_fs/7.33601.1454417604!/image/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg_gen/derivatives/landscape_300/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg)
@@ -197,25 +191,41 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 # Comunicação Estatística
 ![](https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif)
 
-
+### Como combinar diferentes tecnologias?
+* "Novos instrumentos trazem novos desafios".
 
 
 ---
 # Comunicação Estatística
 
-### Computadores falicitaram muito, mas analises ainda sao complicadas... 
-* Modelos e delineamentos complexos  
-* Big data
+![](https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif)
 
-![]()
+### Computadores falicitaram muito o nosso trabalho, mas as análises continuam a ser complexas. 
+* Modelos e delineamentos complexos  
+* Big data e aprendizado de máquinas
+
+
 
 --- 
 # R e Markdown
 
-### funcao render
+### Pacote `?rmarkdown` e a função `render()`
+* A função `render()` é uma $wrapper$, internamente chama `knitr::knit()` e converte o documento para '.html' usando o Pandoc.
+
+* Para usar esse função é necessário o 
+  + No RStudio, esse pacote já vem instalado, assim como uma versão embutida do Pandoc.
+
+
+* É um wrapper da função `pandoc`
 <!-- http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown -->
 
-### Conceitos básicos: slides Prof. Rodrigo dos Reis
+### Conceitos básicos: slides da apresentação 
+
+
+---
+
+
+
 
 
 ---
@@ -226,13 +236,16 @@ exercicio... tente diferentes saidas arquivos e slides
 
 
 ---
-# R Markdown exemplos Prof. Markus
+# Meus exemplos de R Markdown
 
-* plano de aula  
-* Relatorio tecnico   
-* slides - ioslides
+* Plano de aula  
 
-Projetos em R
+* Relatório técnico   
+
+* slides
+
+### Importante: grandes projetos necessitam maior organização!!!
+* Projetos em R
 .Rproj
 
 
@@ -240,13 +253,19 @@ Projetos em R
 ## Slides - pacote xaringan
 De novo, autor Yiuhi
 
+Exemplo:
+
+* Esses slides!!!
 
 
 ---
 ## Curriculum - pacote vitae
 Instalar no R o pacote
+* 
 
-https://docs.ropensci.org/vitae/
+
+https://docs.ropensci.org/vitae/  
+
 https://github.com/mitchelloharawild/vitae
 
 
@@ -256,62 +275,48 @@ https://github.com/mitchelloharawild/vitae
 
 
 ---
-## Artigos - pacote rticles
+## Artigos - pacote `rticles`
 de novo autor yiuhi
 https://github.com/rstudio/rticles
 
 ---
-## Livros - pacote bookdown
+## Livros - pacote `bookdown`
 
 
 ---
-## Websites - pacote blogdown
-fazer pagina e divulgar...  
+## Websites - pacote `blogdown`
 
-Exemplo: ufrgs.br/datathon
+Exemplos: 
+
+* 1º Datathon UFRGS - [](ufrgs.br/datathon)  
+
+  + Arquivos do projeto no RStudio em 
+  
 
 Github repositories: https://github.com/rbind/blogdown-demo
 
 
 ---
-## Provas - rexams
+## Provas - rexams e learnr
+
+
+---
+Referências (e eventos)
+
+* Workshop UseR!2019 - "" -    
+  + Datathon (Rmarkdown + Shiny): https://user2019.r-project.org/datathon/
+  + Winner's work: https://user2019.r-project.org/static/uploads/winner_datathon2019.html
+
+* Rstudio Conf 2019 - "" - https://github.com/dtkaplan/shinymark
+
+* https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1
+
+* http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown
+
+* curso-r
+
 
 ---
 ## Thanks!
 
-<!-- ![](https://miro.medium.com/max/875/1*x7P7gqjo8k2_bj2rTQWAfg.jpeg) -->
-
-
-
-
-<!-- Porque rstudio? Editor p varias linguagens como os outros... Comunidade R e mais tecnologias... desenvolvedores estatisticos... oportunidade p nos.. -->
-
-<!-- Exemplo 1: .R e .md  -->
-
-<!-- Falar rmarkdown... alem de combinar texto com codigos... -->
-
-<!-- Exempo 2: criar .Rmd usando Rstudio -->
-
-<!-- Exemplo 3: .Rmd botao knit e funcao render -->
-
-<!-- Exemplo 4: mastering .Rmd... extra add html para cores, icones... codigos html funcionam aqui... -->
-
-<!-- Mostrar plano de aula... mcml_notes... slides infA -->
-
-<!-- Exemplo5: .Rmd e .R parametrizado -->
-
-<!-- Exemplo: bookdown -->
-
-<!-- Exemplo 6: site simples -->
-
-<!-- Exemplo 7: blogdown -->
-
-<!-- Exemplo pacote vitae -->
-
-<!-- Exemplo pacote rticles -->
-<!-- Exemplo posters -->
-
-
-<!-- All in computing is a txt file and a bunch of rules -->
-
- 
+![](https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif)
