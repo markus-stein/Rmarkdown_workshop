@@ -113,7 +113,7 @@ um **conversor**.
 diversos formatos, incluindo Markdown para HTML.
 
 Se o Pandoc estiver instalado no seu sistema (Unix) é possível
-converter o documento na linha de comando (shell) com
+converter o documento na linha de comando (Terminal) com
 
 ```{sh, eval=FALSE}
 pandoc -f markdown -t html exemplo-rmarkdown-0.md -o exemplo-rmarkdown-0.html
@@ -122,12 +122,13 @@ pandoc -f markdown -t html exemplo-rmarkdown-0.md -o exemplo-rmarkdown-0.html
 O pacote `knitr` possui a função `pandoc()` que é um *wrapper* para
 executar o programa `pandoc` no sistema.
 
-```{r}
-# pandoc(input = "examples/exemplo-rmarkdown-0.md", format = "html")
+```{r, message=FALSE,warning=FALSE}
+library(knitr)
+pandoc(input = "examples/exemplo-rmarkdown-0.md", format = "html")
 ```
 
 Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
-[Exemplo1.html](examples/exemplo-rmarkdown-0.html) no navegador.
+[exemplo-rmarkdown-0.html](examples/exemplo-rmarkdown-0.html) no navegador.
 
 
 ---
@@ -219,6 +220,393 @@ Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
 * Prof. Rodrigo dos Reis
 
 
+
+---
+
+class: inverse, middle, center
+background-image: url("images/rodrigo/rmarkdown.png")
+background-size: contain
+
+---
+
+# O que é o rmarkdown<sup>1</sup>?
+
+.pull-left[
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
+knitr::include_graphics('images/rodrigo/yihui1.jpg')
+```
+
+]
+
+.pull-right[
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='40%', paged.print=FALSE}
+knitr::include_graphics('images/rodrigo/rstudio-hex-knitr-dot-psd.png')
+```
+
+- **R** (códigos) + **Markdown** (linguagem **simples** de marcação para geração de **texto**)
+    + [**Pandoc**](http://pandoc.org/) (conversor universal de documentos)
+
+]
+
+.footnote[
+[1] Allaire, J.J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., Wickham, H., Cheng, J. e Chang, W. (2018). *rmarkdown: Dynamic
+  Documents for R*. R package version 1.10.
+]
+
+---
+
+background-image: url("images/rodrigo/bandThree2.png")
+background-size: cover
+
+# O fluxo do rmarkdown?
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
+knitr::include_graphics('images/rodrigo/rmarkdownflow.png')
+```
+
+- Quando compilado, o **R Markdown** alimenta o arquivo .Rmd para **knitr**, que executa todos os fragmentos de código e cria um novo documento markdown (.md) que inclui o código e sua saída.
+- O arquivo markdown gerado pelo **knitr** é então processado pelo **pandoc**⧉ que é responsável pela criação do formato final.
+- Isso pode parecer complicado, mas o **R Markdown** torna extremamente simples encapsulando todo o processamento acima em uma única função de renderização.
+
+---
+
+# Por que rmarkdown?
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
+knitr::include_graphics('images/rodrigo/r_comunica.png')
+```
+
+- Vamos a um exemplo!
+
+---
+
+background-image:  url("images/rodrigo/totoro_danca.gif")
+background-size: cover
+class: center, inverse
+
+# Vamos lá!
+
+---
+
+# Instalando e carregando o rmarkdown
+
+- Instalando o pacote **rmarkdown**
+
+```{r echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE}
+install.packages("rmarkdown")
+```
+
+- Carregando o pacote **rmarkdown**
+
+```{r echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE}
+library(rmarkdown)
+```
+
+---
+
+# Criando um documento R markdown
+
+- Clique em `File -> New File -> R Markdown`
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='55%', paged.print=FALSE}
+knitr::include_graphics('images/rodrigo/rmd_print_1.png')
+```
+
+---
+
+# Criando um documento R markdown
+
+- Agora você deve ver uma caixa de diálogo como mostrado abaixo.
+- Selecione "Document" no painel à esquerda e preencha o campo de título e autor e clique em "OK".
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='60%', paged.print=FALSE}
+knitr::include_graphics('images/rodrigo/rmd_print_2.png')
+```
+
+---
+
+# Criando um documento R markdown
+
+- Agora você deve ter um documento que parece com isso
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
+knitr::include_graphics('images/rodrigo/rmd_print_3.png')
+```
+
+---
+
+# YAML
+
+- Um conjunto de opções que definem o arquivo de saída
+
+.pull-left[
+
+- Este documento gera um arquivo `html`
+
+```yaml
+---
+title: "Exemplo 1 - Rmd"
+author: "Rodrigo Citton P. dos Reis"
+date: "15 de outubro de 2018"
+output: html_document
+---
+```
+
+]
+
+.pull-right[
+
+- Este documento gera um arquivo `word`
+
+```yaml
+---
+title: "Exemplo 1 - Rmd"
+author: "Rodrigo Citton P. dos Reis"
+date: "15 de outubro de 2018"
+output: word_document
+---
+```
+
+]
+
+---
+
+# Markdown: sintaxe básica
+
+.pull-left[
+
+```
+texto simples
+_italico_
+__negrito__
+[Datahon](https://www.ufrgs.br/datathon)
+# Título 1
+## Título 2
+### Título 3
+```
+
+]
+
+.pull-right[
+
+texto simples
+
+_italico_
+
+__negrito__
+
+[Datahon](https://www.ufrgs.br/datathon)
+
+## Título 1
+
+### Título 2
+
+#### Título 3
+
+]
+
+---
+
+# Markdown: sintaxe básica
+
+.pull-left[
+
+```
+- Lista não ordenada
+- item 2
+    + sub-item 1
+    + sub-item 2
+1. Lista ordenada
+2. item 2
+    + sub-item 1
+    + sub-item 2
+Cabeçalho tabela | Segundo cabeçalho
+---------------- | -----------------
+Célula tabela    | Célula 2
+Célula 3         | Célula 4
+```
+
+]
+
+.pull-right[
+
+- Lista não ordenada
+- item 2
+    + sub-item 1
+    + sub-item 2
+    
+1. Lista ordenada
+2. item 2
+    + sub-item 1
+    + sub-item 2
+
+Cabeçalho tabela | Segundo cabeçalho
+---------------- | -----------------
+Célula tabela    | Célula 2
+Célula 3         | Célula 4
+
+]
+
+
+---
+
+# O banco de dados
+
+- Carregando o banco de dados **gapminder**
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# install.packages("gapminder")
+library(gapminder)
+gapminder
+```
+
+---
+
+# O banco de dados
+
+- `gdpPercap`: **renda per capita** ("PIB/Pop").
+- `lifeExp`: **expectativa de vida** ao nascer (número de anos aproximados que se espera que um grupo de indivíduos nascidos no mesmo ano irá viver).
+- `year`: 1952 a 2007 em incrementos de 5 anos.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)
+gapminder <- gapminder %>%
+  mutate(pop_m = pop/1e6)
+gapminder07 <- gapminder %>%
+  filter(year == 2007)
+```
+
+---
+
+background-image:  url("images/rodrigo/chuky.gif")
+background-size: cover
+class: center, inverse
+
+# Chunk!
+
+---
+
+# Chunk
+
+- Os códigos em **R** são passados para o arquivo .Rmd por meio de fragmentos de código (_chunk codes_).
+- Um exemplo de chunk:
+
+
+    `r ''````{r}
+    summary(gapminder07$pop_m)
+    ```
+- Saída:
+
+```{r}
+summary(gapminder07$pop_m)
+```
+
+---
+
+# Chunk
+
+    `r ''````{r, echo=FALSE}
+    summary(gapminder07$pop_m)
+    ```
+
+- Saída:
+```{r, echo=FALSE}
+summary(gapminder07$pop_m)
+```
+
+---
+
+# Chunk
+
+    `r ''````{r, eval=FALSE}
+    summary(gapminder07$pop_m)
+    ```
+
+- Saída:
+```{r, eval=FALSE}
+summary(gapminder07$pop_m)
+```
+
+---
+
+# Chunk
+
+    `r ''````{r, echo=FALSE, results='asis'}
+    library(knitr)
+    mod1 <- lm(lifeExp ~ gdpPercap, data = gapminder07)
+    kable(summary(mod1)$coef, format = "html")
+    ```
+
+- Saída:
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+mod1 <- lm(lifeExp ~ gdpPercap, data = gapminder07)
+kable(summary(mod1)$coef, format = "html")
+```
+
+---
+
+background-image:  url("images/totoro_jumpingjack.gif")
+background-size: cover
+class: center, inverse
+
+# Exercício 1!
+
+---
+
+1. Crie um arquivo .Rmd.
+2. Acrescente texto e a análise do arquivo **exemplo-rmarkdown-1.R**
+3. Clique em `knit` para gerar o arquivo de saída.
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
+knitr::include_graphics('images/rmd_print_4.png')
+```
+
+- Experimente gerar diferentes formatos de saída.
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
+knitr::include_graphics('images/rmd_print_5.png')
+```
+
+---
+
+# Por que rmarkdown?
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
+knitr::include_graphics('images/r_comunica.png')
+```
+
+- Reprodutibilidade
+- Dinamismo
+- Eficiência
+- Velocidade
+
+---
+
+background-image:  url("images/totoro_bola.gif")
+background-size: cover
+class: center, inverse
+
+# Um último exemplo!
+
+---
+
+background-image:  url("images/porquecomprar-v2.gif")
+background-size: cover
+class: center, middle, inverse
+
+# Perguntas!?!
+
+---
+
+background-image:  url("images/stat_caco.gif")
+background-size: cover
+class: middle, center, inverse
+
+
+
 ---
 # Meus exemplos de R Markdown
 
@@ -238,7 +626,9 @@ Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
 * Projetos em R e ` .Rproj `
 * `Git` e `Github`?
 
+
 ---
+
 ## Slides - pacote xaringan
 De novo, autor Yiuhi
 
@@ -248,6 +638,7 @@ Exemplo:
 
 
 ---
+
 ## Curriculum - pacote `vitae`
 
 
@@ -257,6 +648,7 @@ https://github.com/mitchelloharawild/vitae
 
 
 ---
+
 ## Artigos - pacote `rticles`
 De novo autor Yiuhi  
 
@@ -264,12 +656,14 @@ De novo autor Yiuhi
 
 
 ---
+
 ## Livros - pacote `bookdown`
 
 Exemplos Juliana:
 
 
 ---
+
 ## Websites - pacote `blogdown`
 
 Github repositories: 
@@ -281,14 +675,17 @@ Github repositories:
 
 
 ---
+
 ## Pôster - pacote `pagedown`
 
 
 ---
+
 ## Provas - pacotes `rexams` e `learnr`
 
 
 ---
+
 Referências (e eventos)
 
 * Workshop UseR!2019 - https://github.com/rstudio-education/communicate-rmd-workshop    
@@ -305,6 +702,13 @@ Referências (e eventos)
 
 
 ---
+
 ## Thanks!
 
 ![](https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif)
+
+
+### https://github.com/markus-stein/Rmarkdown_workshop
+
+### markus.stein@ufrgs.br
+
