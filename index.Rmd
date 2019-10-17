@@ -615,7 +615,7 @@ class: center, middle, inverse
 
 
 * slides `ioslides`
-  + * 1º Datathon UFRGS - [](ufrgs.br/datathon)  
+  + 1º Datathon UFRGS - [](ufrgs.br/datathon)  
   + Arquivos do projeto RStudio em https://github.com/datathon-ufrgs/website
 
 
