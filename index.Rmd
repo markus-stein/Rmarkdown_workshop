@@ -791,10 +791,10 @@ Github repositories:
 
 # Thanks!
 
-```{r out.width='25%', fig.show='hold', echo=FALSE, paged.print=FALSE, message=FALSE, warning=FALSE}
-knitr::include_graphics('https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif)')
-```
 
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='65%', paged.print=FALSE}
+knitr::include_graphics('https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif')
+```
 
 
 
