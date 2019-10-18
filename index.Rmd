@@ -42,9 +42,9 @@ options(htmltools.dir.version = FALSE)
 
 * Pacotes do R:  
 
-  + `rmarkdown` e `knitr`, e pacotes auxiliares `diplyr`, `tidyr`;
+  + `knitr` e `rmarkdown`, pacotes auxiliares `diplyr`, `tidyr`;
   
-  + Extras: `devtools`, `hugo`, `blogdown`, `bookdown`, `xaringan`, ....  
+  + Extras: `hugo`, `blogdown`, `bookdown`, `xaringan`, ....  
 
 
 * Material do curso  
@@ -58,7 +58,7 @@ options(htmltools.dir.version = FALSE)
 
 * Guia rápido de R Markdown (Cheat Sheet)  
 
-  + Pasta 'cheatsheet'
+  + Pasta `cheatsheet`
 
 
 ---
@@ -576,7 +576,7 @@ knitr::include_graphics('images/rodrigo/rmd_print_5.png')
 
 # Por que rmarkdown?
 
-```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='100%', paged.print=FALSE}
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='80%', paged.print=FALSE}
 knitr::include_graphics('images/rodrigo/r_comunica.png')
 ```
 
@@ -619,7 +619,7 @@ class: center, middle, inverse
 
 
 * Slides com `ioslides`
-  + 1º Datathon UFRGS - [](ufrgs.br/datathon)  
+  + 1º Datathon UFRGS - [ufrgs.br/datathon](http://www.ufrgs.br/datathon)  
   + Arquivos do projeto RStudio em https://github.com/datathon-ufrgs/website
 
 
