@@ -4,7 +4,7 @@
     <title>R Markdown para Comunicação Estatística</title>
     <meta charset="utf-8" />
     <meta name="author" content="Markus Stein   com cópia de Rodrigo dos Reis  e em colaboração com Márcia Barbian e Silvana Schneider     JORNADA DE MATEMÁTICA E ESTATÍSTICA: 60 ANOS IME/UFRGS" />
-    <meta name="date" content="2019-10-17" />
+    <meta name="date" content="2019-10-18" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # R Markdown para Comunicação Estatística
 ### Markus Stein <br /> <small>com cópia de Rodrigo dos Reis<br /> e em colaboração com Márcia Barbian e Silvana Schneider</small> <br /> <br /> JORNADA DE MATEMÁTICA E ESTATÍSTICA: 60 ANOS IME/UFRGS
 ### Departamento de Estatística
-### 2019-10-17
+### 2019-10-18
 
 ---
 
@@ -23,7 +23,10 @@ class: center, middle, inverse, title-slide
 
 
 
-![](images/cropped-logo-60-transparente.png)
+
+
+&lt;img src="images/cropped-logo-60-transparente.png" width="75%" style="display: block; margin: auto;" /&gt;
+
 
 ---
 # Visão Geral
@@ -46,9 +49,9 @@ class: center, middle, inverse, title-slide
 
 * Pacotes do R:  
 
-  + `rmarkdown` e `knitr`, e pacotes auxiliares `diplyr`, `tidyr`;
+  + `knitr` e `rmarkdown`, pacotes auxiliares `diplyr`, `tidyr`;
   
-  + Extras: `devtools`, `hugo`, `blogdown`, `bookdown`, `xaringan`, ....  
+  + Extras: `hugo`, `blogdown`, `bookdown`, `xaringan`, ....  
 
 
 * Material do curso  
@@ -62,7 +65,7 @@ class: center, middle, inverse, title-slide
 
 * Guia rápido de R Markdown (Cheat Sheet)  
 
-  + Pasta 'cheatsheet'
+  + Pasta `cheatsheet`
 
 
 ---
@@ -125,7 +128,7 @@ executar o programa `pandoc` no sistema.
 
 ```r
 # install.packages("knitr")
-library(knitr)
+# library(knitr)
 pandoc(input = "examples/exemplo-rmarkdown-0.md", format = "html")
 ```
 
@@ -158,21 +161,20 @@ Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/
 Fisher + milionária = "Statistical Methods for Research Workers"
 ```
 
-![](https://www.nature.com/news/polopoly_fs/7.33601.1454417604!/image/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg_gen/derivatives/landscape_300/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg)
+&lt;img src="https://www.nature.com/news/polopoly_fs/7.33601.1454417604!/image/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg_gen/derivatives/landscape_300/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg" width="35%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Comunicação Estatística
+
+&lt;img src="https://psychclassics.yorku.ca/Fisher/Methods/tab6-31.gif" width="65%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 # Comunicação Estatística
 
-![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-31.gif)
-
-
----
-
-# Comunicação Estatística
-
-![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-32.gif)
+&lt;img src="https://psychclassics.yorku.ca/Fisher/Methods/tab6-32.gif" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -181,14 +183,13 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 
 ## Surgimento dos computadores pessoais
 
-![](http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg)  
-
+&lt;img src="http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Comunicação Estatística
 
-![](https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif)
+&lt;img src="https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif" width="45%" style="display: block; margin: auto;" /&gt;
 
 ### Como combinar diferentes tecnologias?
 * "Novos instrumentos trazem novos desafios".
@@ -197,11 +198,11 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 ---
 # Comunicação Estatística
 
-![](https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif)  
+&lt;img src="https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif" width="55%" style="display: block; margin: auto;" /&gt;
 
 ### Computadores falicitaram muito o nosso trabalho, mas os problemas continuam complexos. 
-* Modelos e delineamentos complexos  
-* Big data e aprendizado de máquinas    
+* ** *Big data* **, **modelos** e **delineamentos complexos** 
+* **Aprendizado de máquinas** e **inteligência artificial**    
 
 ---
 
@@ -308,7 +309,7 @@ library(rmarkdown)
 
 # Criando um documento R markdown
 
-- Clique em `File -&gt; New File -&gt; R Markdown`
+- Clique em `File &gt; New File &gt; R Markdown`
 
 &lt;img src="images/rodrigo/rmd_print_1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
@@ -453,7 +454,7 @@ Célula 3         | Célula 4
 
 ```r
 # install.packages("gapminder")
-library(gapminder)
+# library(gapminder)
 gapminder
 ```
 
@@ -471,7 +472,7 @@ gapminder
 ##  8 Afghanistan Asia       1987    40.8 13867957      852.
 ##  9 Afghanistan Asia       1992    41.7 16317921      649.
 ## 10 Afghanistan Asia       1997    41.8 22227415      635.
-## # ... with 1,694 more rows
+## # … with 1,694 more rows
 ```
 
 ---
@@ -485,7 +486,7 @@ gapminder
 
 ```r
 # install.packages(dplyr)
-library(dplyr)
+# library(dplyr)
 gapminder &lt;- gapminder %&gt;%
   mutate(pop_m = pop/1e6)
 gapminder07 &lt;- gapminder %&gt;%
@@ -563,11 +564,6 @@ summary(gapminder07$pop_m)
     ```
 
 - Saída:
-
-```
-## Warning: package 'knitr' was built under R version 3.5.3
-```
-
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -620,7 +616,7 @@ class: center, inverse
 
 # Por que rmarkdown?
 
-&lt;img src="images/rodrigo/r_comunica.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/rodrigo/r_comunica.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 - Reprodutibilidade
 - Dinamismo
@@ -652,7 +648,7 @@ class: center, middle, inverse
 * Planos de aula  
   + abra o arquivo `Exemplo_rmd_logo_PlanoAula.Rmd` na pasta `estendendo_rmd_exemplos`
   + clique no botão `knit`
-  + se der erro com o LATEX tentar instalar o pacote `tinitex` do R
+  + se ocorrer erro com o `\(\LaTeX\)` para gerar `.pdf` tente instalar o pacote `tinitex` do R
 
 
 * Relatório técnico com `shiny`  
@@ -672,6 +668,36 @@ class: center, middle, inverse
 
 ---
 
+# Arquivos `.Rmd` e *templates*
+
+Para experimentar novos formatos de documentos `.Rmd` tente:
+
+.pull-left[
+1. Instale o pacote com o formato desejado;
+
+2. Vá em `File &gt; New File &gt; R Markdown &gt; From Template`, selecione o formato 
+e clique em `OK`;
+
+*Note as diferenças no YAML do arquivo `.Rmd` criado com base.
+
+3. Use o botão para *knit* seu documento e vocês terá seu novo documento. 
+
+
+* Tente os pacotes ao lado =&gt;
+]
+
+.pull-right[
+&lt;img src="https://user-images.githubusercontent.com/163582/45438104-ea200600-b67b-11e8-80fa-d9f2a99a03b0.png" width="25%" /&gt;&lt;img src="https://raw.githubusercontent.com/mitchelloharawild/vitae/master/man/figures/logo.png" width="25%" /&gt;
+  
+`rticles`
+---------
+
+&lt;img src="https://bookdown.org/yihui/bookdown/images/logo.png" width="25%" /&gt;&lt;img src="https://bookdown.org/yihui/blogdown/images/logo.png" width="25%" /&gt;
+]
+
+
+---
+
 # Slides - pacote `xaringan`
 Autor Yiuhi Xie
 
@@ -680,10 +706,12 @@ Autor Yiuhi Xie
 install.packages("xaringan")
 ```
 
-* Crie um novo documento `xaringan` em   
+* Por exemplo, crie um novo documento `xaringan` em   
 `File &gt; New File &gt; R Markdown &gt; From Template &gt; Ninja Presentation {xaringan}`
 
-Exemplo:
+
+
+Outro exemplo:
 
 * Esses slides aqui!!!
 
@@ -770,14 +798,14 @@ Github repositories:
 
 * http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown
 
-* curso-r
+* curso-r *website*
 
 
 ---
 
 # Thanks!
 
-![](https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif)
+&lt;img src="https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif)" width="25%" /&gt;
 
 
 
@@ -786,6 +814,31 @@ Github repositories:
 
 
 ## markus.stein@ufrgs.br
+
+
+---
+## ...em breve...
+
+
+# Desafio Datathon UFRGS "*Templates* para o Dest"
+
+*"Criar um template de monografias (e dissertações?) para o Dest".*
+
+* Os três participantes que mais contribuirem em uma unica proposta (ou o grupo
+com a melhor proposta) serão premiados, além de terem seu trabalho divulgado para
+o IME e sendo utilizado por várias pessoas
+
+  + `.Rmd` ou `\(\LaTeX\)`?
+
+  + Avaliaremos estilo e normas ABNT, qual será a melhor proposta?
+
+* Temos três canecas para os participantes que trabalharem no
+desenvolvimento da proposta escolhida.
+
+.footnote[
+*Top secret: Durante o minicurso tivemos a oferta de contribuição com
+alguma premiação por parte de um dos participantes. ;-)*
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

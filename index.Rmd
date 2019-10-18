@@ -18,8 +18,19 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
+```{r echo=FALSE, message=FALSE, warning=FALSE, }
+## installing and loading R packages
+packsneeded <- c("knitr", "rmarkdown", "gapminder", "dplyr", "tidyr", "xaringan")
+# packstoinstall <- packsneeded[!(packsneeded %in% installed.packages()[,1])]
+# if( length(packstoinstall) > 0 ) install.packages( packstoinstall )
+invisible( lapply(packsneeded, library, character.only = TRUE) )
+```
 
-![](images/cropped-logo-60-transparente.png)
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='75%', paged.print=FALSE}
+knitr::include_graphics("images/cropped-logo-60-transparente.png")
+```
+
 
 ---
 # Visão Geral
@@ -121,7 +132,7 @@ executar o programa `pandoc` no sistema.
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 # install.packages("knitr")
-library(knitr)
+# library(knitr)
 pandoc(input = "examples/exemplo-rmarkdown-0.md", format = "html")
 ```
 
@@ -153,21 +164,26 @@ Em ambos os casos, o resultado é o arquivo [exemplo-rmarkdown-0.html](examples/
 Fisher + milionária = "Statistical Methods for Research Workers"
 ```
 
-![](https://www.nature.com/news/polopoly_fs/7.33601.1454417604!/image/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg_gen/derivatives/landscape_300/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg)
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='35%', paged.print=FALSE}
+knitr::include_graphics('https://www.nature.com/news/polopoly_fs/7.33601.1454417604!/image/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg_gen/derivatives/landscape_300/H4060090-Portrait_of_Sir_Ronald_Aylmer_Fisher-SPL_HIRES.jpg')
+```
+
+---
+
+# Comunicação Estatística
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='65%', paged.print=FALSE}
+knitr::include_graphics('https://psychclassics.yorku.ca/Fisher/Methods/tab6-31.gif')
+```
 
 
 ---
 
 # Comunicação Estatística
 
-![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-31.gif)
-
-
----
-
-# Comunicação Estatística
-
-![](https://psychclassics.yorku.ca/Fisher/Methods/tab6-32.gif)
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='70%', paged.print=FALSE}
+knitr::include_graphics('https://psychclassics.yorku.ca/Fisher/Methods/tab6-32.gif')
+```
 
 
 ---
@@ -176,14 +192,17 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 
 ## Surgimento dos computadores pessoais
 
-![](http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg)  
-
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='60%', paged.print=FALSE}
+knitr::include_graphics('http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg')  
+```
 
 ---
 
 # Comunicação Estatística
 
-![](https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif)
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='45%', paged.print=FALSE}
+knitr::include_graphics('https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif')
+```
 
 ### Como combinar diferentes tecnologias?
 * "Novos instrumentos trazem novos desafios".
@@ -192,11 +211,13 @@ Fisher + milionária = "Statistical Methods for Research Workers"
 ---
 # Comunicação Estatística
 
-![](https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif)  
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='55%', paged.print=FALSE}
+knitr::include_graphics('https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif')
+```
 
 ### Computadores falicitaram muito o nosso trabalho, mas os problemas continuam complexos. 
-* Modelos e delineamentos complexos  
-* Big data e aprendizado de máquinas    
+* ** *Big data* **, **modelos** e **delineamentos complexos** 
+* **Aprendizado de máquinas** e **inteligência artificial**    
 
 ---
 
@@ -309,7 +330,7 @@ library(rmarkdown)
 
 # Criando um documento R markdown
 
-- Clique em `File -> New File -> R Markdown`
+- Clique em `File > New File > R Markdown`
 
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='55%', paged.print=FALSE}
 knitr::include_graphics('images/rodrigo/rmd_print_1.png')
@@ -459,7 +480,7 @@ Célula 3         | Célula 4
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 # install.packages("gapminder")
-library(gapminder)
+# library(gapminder)
 gapminder
 ```
 
@@ -473,7 +494,7 @@ gapminder
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 # install.packages(dplyr)
-library(dplyr)
+# library(dplyr)
 gapminder <- gapminder %>%
   mutate(pop_m = pop/1e6)
 gapminder07 <- gapminder %>%
@@ -543,7 +564,7 @@ summary(gapminder07$pop_m)
 
 - Saída:
 ```{r, echo=FALSE, results='asis'}
-library(knitr)
+# library(knitr)
 mod1 <- lm(lifeExp ~ gdpPercap, data = gapminder07)
 kable(summary(mod1)$coef, format = "html")
 ```
@@ -610,7 +631,7 @@ class: center, middle, inverse
 * Planos de aula  
   + abra o arquivo `Exemplo_rmd_logo_PlanoAula.Rmd` na pasta `estendendo_rmd_exemplos`
   + clique no botão `knit`
-  + se der erro com o LATEX tentar instalar o pacote `tinitex` do R
+  + se ocorrer erro com o $\LaTeX$ para gerar `.pdf` tente instalar o pacote `tinitex` do R
 
 
 * Relatório técnico com `shiny`  
@@ -630,6 +651,42 @@ class: center, middle, inverse
 
 ---
 
+# Arquivos `.Rmd` e *templates*
+
+Para experimentar novos formatos de documentos `.Rmd` tente:
+
+.pull-left[
+1. Instale o pacote com o formato desejado;
+
+2. Vá em `File > New File > R Markdown > From Template`, selecione o formato 
+e clique em `OK`;
+
+*Note as diferenças no YAML do arquivo `.Rmd` criado com base.
+
+3. Use o botão para *knit* seu documento e vocês terá seu novo documento. 
+
+
+* Tente os pacotes ao lado =>
+]
+
+.pull-right[
+```{r out.width='25%', fig.show='hold', echo=FALSE, paged.print=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(c('https://user-images.githubusercontent.com/163582/45438104-ea200600-b67b-11e8-80fa-d9f2a99a03b0.png', 'https://raw.githubusercontent.com/mitchelloharawild/vitae/master/man/figures/logo.png'))
+# plot.new(); text(1,1,"rticles")
+# knitr::include_graphics(c('https://bookdown.org/yihui/bookdown/images/logo.png', 'https://bookdown.org/yihui/blogdown/images/logo.png'))
+```
+  
+`rticles`
+---------
+
+```{r out.width='25%', fig.show='hold', echo=FALSE, paged.print=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(c('https://bookdown.org/yihui/bookdown/images/logo.png', 'https://bookdown.org/yihui/blogdown/images/logo.png'))
+```
+]
+
+
+---
+
 # Slides - pacote `xaringan`
 Autor Yiuhi Xie
 
@@ -637,10 +694,12 @@ Autor Yiuhi Xie
 install.packages("xaringan")
 ```
 
-* Crie um novo documento `xaringan` em   
+* Por exemplo, crie um novo documento `xaringan` em   
 `File > New File > R Markdown > From Template > Ninja Presentation {xaringan}`
 
-Exemplo:
+
+
+Outro exemplo:
 
 * Esses slides aqui!!!
 
@@ -725,14 +784,16 @@ Github repositories:
 
 * http://cursos.leg.ufpr.br/prr/capMarkdown.html#escrevendo_um_documento_em_markdown
 
-* curso-r
+* curso-r *website*
 
 
 ---
 
 # Thanks!
 
-![](https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif)
+```{r out.width='25%', fig.show='hold', echo=FALSE, paged.print=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics('https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif)')
+```
 
 
 
@@ -742,3 +803,27 @@ Github repositories:
 
 ## markus.stein@ufrgs.br
 
+
+---
+## ...em breve...
+
+
+# Desafio Datathon UFRGS "*Templates* para o Dest"
+
+*"Criar um template de monografias (e dissertações?) para o Dest".*
+
+* Os três participantes que mais contribuirem em uma unica proposta (ou o grupo
+com a melhor proposta) serão premiados, além de terem seu trabalho divulgado para
+o IME e sendo utilizado por várias pessoas
+
+  + `.Rmd` ou $\LaTeX$?
+
+  + Avaliaremos estilo e normas ABNT, qual será a melhor proposta?
+
+* Temos três canecas para os participantes que trabalharem no
+desenvolvimento da proposta escolhida.
+
+.footnote[
+*Top secret: Durante o minicurso tivemos a oferta de contribuição com
+alguma premiação por parte de um dos participantes. ;-)*
+]
