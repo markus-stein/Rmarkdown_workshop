@@ -1,6 +1,6 @@
 ---
 title: "R Markdown para Comunicação Estatística"
-author: "Markus Stein <br /> <small>com cópia de Rodrigo dos Reis<br /> e em colaboração com Márcia Barbian e Silvana Schneider</small> <br /> <br /> JORNADA DE MATEMÁTICA E ESTATÍSTICA: 60 ANOS IME/UFRGS"
+author: "Markus Stein <br /> <small>em colaboração com Márcia Barbian, Rodrigo dos Reis<br />e Silvana Schneider</small> <br /> <br /> JORNADA DE MATEMÁTICA E ESTATÍSTICA: 60 ANOS IME/UFRGS"
 institute: "Departamento de Estatística"
 date: "`r Sys.Date()`"
 output:
@@ -221,8 +221,6 @@ knitr::include_graphics('https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif')
 
 ---
 
-
---- 
 
 # R e Markdown
 
@@ -658,7 +656,7 @@ Para experimentar novos formatos de documentos `.Rmd` tente:
 .pull-left[
 1. Instale o pacote com o formato desejado;
 
-2. Vá em `File > New File > R Markdown > From Template`, selecione o formato 
+2. No menu `File > New File > R Markdown > From Template` selecione o formato 
 e clique em `OK`;
 
 *Note as diferenças no YAML do arquivo `.Rmd` criado com base.
@@ -814,14 +812,14 @@ knitr::include_graphics('https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif')
 
 * Os três participantes que mais contribuirem em uma unica proposta (ou o grupo
 com a melhor proposta) serão premiados, além de terem seu trabalho divulgado para
-o IME e sendo utilizado por várias pessoas
+o IME e sendo utilizado por muitas pessoas.
 
   + `.Rmd` ou $\LaTeX$?
 
   + Avaliaremos estilo e normas ABNT, qual será a melhor proposta?
 
 * Temos três canecas para os participantes que trabalharem no
-desenvolvimento da proposta escolhida.
+desenvolvimento da(s) proposta(s) escolhida(s).
 
 .footnote[
 *Top secret: Durante o minicurso tivemos a oferta de contribuição com
