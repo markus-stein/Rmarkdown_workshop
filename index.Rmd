@@ -76,9 +76,12 @@ knitr::include_graphics("images/cropped-logo-60-transparente.png")
 # O que é ![Logo do R](http://developer.r-project.org/Logo/Rlogo-5.png)?
 ### (Por que R???)
 
- ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='30%', paged.print=FALSE}
- knitr::include_graphics('https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg')
- ```
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='25%', paged.print=FALSE}
+knitr::include_graphics('https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg')
+```
+
+*Fonte: [The Art of R Programming](https://www.oreilly.com/library/view/the-art-of/9781593273842/)*  
+
 
 ### E por que RStudio?
 
@@ -193,8 +196,11 @@ knitr::include_graphics('https://psychclassics.yorku.ca/Fisher/Methods/tab6-32.g
 ## Surgimento dos computadores pessoais
 
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='60%', paged.print=FALSE}
-knitr::include_graphics('http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg')  
+# knitr::include_graphics('http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files/Apple1.jpg')  
+knitr::include_graphics("images/FirstApple1.jpg")
 ```
+*Fonte: http://www.cs.kent.edu/~rothstei/10051/HistoryPt3.htm*
+
 
 ---
 
@@ -203,6 +209,7 @@ knitr::include_graphics('http://www.cs.kent.edu/~rothstei/10051/HistoryPt3_files
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='45%', paged.print=FALSE}
 knitr::include_graphics('https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif')
 ```
+*Fonte: [ghipy.com](https://giphy.com/)*
 
 ### Como combinar diferentes tecnologias?
 * "Novos instrumentos trazem novos desafios".
@@ -214,6 +221,7 @@ knitr::include_graphics('https://media.giphy.com/media/dsO8D6Qf1brrO/giphy.gif')
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='55%', paged.print=FALSE}
 knitr::include_graphics('https://media.giphy.com/media/CEYYQNKO2HDoc/giphy.gif')
 ```
+*Fonte: [ghipy.com](https://giphy.com/)*
 
 ### Computadores falicitaram muito o nosso trabalho, mas os problemas continuam complexos. 
 * ** *Big data* **, **modelos** e **delineamentos complexos** 
@@ -793,6 +801,7 @@ Github repositories:
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='65%', paged.print=FALSE}
 knitr::include_graphics('https://media.giphy.com/media/cvmugq5cuJ4nC/giphy.gif')
 ```
+*Fonte: [ghipy.com](https://giphy.com/)*
 
 
 
