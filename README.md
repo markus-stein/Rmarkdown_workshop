@@ -3,6 +3,12 @@
 Minicurso "Rmarkdown para Comunicação Estatística" apresentado na Jornada dos 
 60 anos do IME UFRGS.
 
+## Para visualizar os slides
+
+https://markus-stein.github.io/Rmarkdown_workshop/index.html#1
+
+## Para reproduzir os slides
+
 Os slides foram escritos usando o pacote `xaringan` do R. Para reproduzi-los 
 verifique:
 
@@ -25,7 +31,9 @@ library("xaringan")
 
 2. Outros pacotes também são necessários `gapminder`, `knitr` e `dplyr`.
 
+3. Clonar o repositório https://github.com/markus-stein/Rmarkdown_workshop e abrir o projeto no Rstudio  (arquivo `.Rproj`). 
 
+4. Dentro do projeto abra e `knit` o arquivo da apresentação, `index.Rmd`.
 
 ![][id]
 
