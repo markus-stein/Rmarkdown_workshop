@@ -5,7 +5,7 @@ Minicurso "Rmarkdown para Comunicação Estatística" apresentado na Jornada dos
 
 ## Para visualizar os slides
 
-[https://markus-stein.github.io/Rmarkdown_workshop/index.html](https://markus-stein.github.io/Rmarkdown_workshop/index.html){target="_blank"}
+https://markus-stein.github.io/Rmarkdown_workshop/index.html
 
 
 ## Para reproduzir os slides
@@ -32,7 +32,7 @@ library("xaringan")
 
 2. Outros pacotes também são necessários `gapminder`, `knitr` e `dplyr`.
 
-3. Clonar o repositório [https://github.com/markus-stein/Rmarkdown_workshop](https://github.com/markus-stein/Rmarkdown_workshop){target="_blank"} e abrir o projeto no Rstudio  (arquivo `.Rproj`). 
+3. Clonar o repositório https://github.com/markus-stein/Rmarkdown_workshop e abrir o projeto no Rstudio (arquivo `.Rproj`). 
 
 4. Dentro do projeto abra e `knit` o arquivo da apresentação, `index.Rmd`.
 

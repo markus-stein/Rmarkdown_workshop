@@ -79,7 +79,6 @@ knitr::include_graphics("images/cropped-logo-60-transparente.png")
 ```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width='25%', paged.print=FALSE}
 knitr::include_graphics('https://www.oreilly.com/library/view/the-art-of/9781593273842/httpatomoreillycomsourcenostarchimages915868.png.jpg')
 ```
-
 *Fonte: [The Art of R Programming](https://www.oreilly.com/library/view/the-art-of/9781593273842/)*  
 
 
